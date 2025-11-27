@@ -1,0 +1,120 @@
+﻿
+    <Window x:Class="Registro_de_carnets.AgregarEscuelaDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Agregar nueva escuela" 
+        Height="320" 
+        Width="500"
+        WindowStartupLocation="CenterOwner"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        AllowsTransparency="True"
+        Background="Transparent">
+
+    <Window.Resources>
+        <SolidColorBrush x:Key="UABCGreen" Color="#00594D"/>
+        <SolidColorBrush x:Key="UABCGold" Color="#D7A22A"/>
+    </Window.Resources>
+
+    <Border Background="White" 
+            CornerRadius="16" 
+            Padding="40"
+            Margin="10">
+        <Border.Effect>
+            <DropShadowEffect ShadowDepth="0" BlurRadius="20" Opacity="0.3" Color="Black"/>
+        </Border.Effect>
+        
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <!-- Título -->
+            <TextBlock Grid.Row="0" 
+                       Text="Agregar nueva escuela" 
+                       FontSize="24" 
+                       FontWeight="Bold" 
+                       Foreground="{StaticResource UABCGreen}"
+                       Margin="0,0,0,30"/>
+
+            <!-- Label -->
+            <TextBlock Grid.Row="1"
+                       Text="Nombre de la escuela"
+                       FontSize="13"
+                       FontWeight="Medium"
+                       Foreground="#FF555555"
+                       Margin="0,0,0,8"/>
+
+            <!-- Input -->
+            <Border Grid.Row="2"
+                    Background="#80F5F5DC"
+                    BorderBrush="{StaticResource UABCGold}"
+                    BorderThickness="2"
+                    CornerRadius="8"
+                    Height="50"
+                    VerticalAlignment="Top">
+                <TextBox x:Name="NombreEscuelaTextBox"
+                         Background="Transparent"
+                         BorderThickness="0"
+                         Padding="15,12"
+                         FontSize="14"
+                         VerticalContentAlignment="Center"
+                         Text="Ej. Facultad de Deportes"/>
+            </Border>
+
+            <!-- Botones -->
+            <Grid Grid.Row="3" Margin="0,30,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Button x:Name="CancelarButton"
+                        Grid.Column="0"
+                        Content="Cancelar"
+                        Height="50"
+                        Background="#FFE0E0E0"
+                        Foreground="#FF666666"
+                        FontSize="16"
+                        FontWeight="Bold"
+                        BorderThickness="0"
+                        Cursor="Hand">
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Background="{TemplateBinding Background}"
+                                    CornerRadius="25">
+                                <ContentPresenter HorizontalAlignment="Center" 
+                                                VerticalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+                <Button x:Name="GuardarButton"
+                        Grid.Column="2"
+                        Content="Guardar"
+                        Height="50"
+                        Background="{StaticResource UABCGreen}"
+                        Foreground="White"
+                        FontSize="16"
+                        FontWeight="Bold"
+                        BorderThickness="0"
+                        Cursor="Hand">
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Background="{TemplateBinding Background}"
+                                    CornerRadius="25">
+                                <ContentPresenter HorizontalAlignment="Center" 
+                                                VerticalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+            </Grid>
+        </Grid>
+    </Border>
+</Window>
