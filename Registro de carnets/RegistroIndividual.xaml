@@ -33,8 +33,9 @@
                                 Background="{TemplateBinding Background}"
                                 BorderBrush="{TemplateBinding BorderBrush}"
                                 BorderThickness="{TemplateBinding BorderThickness}"
-                                CornerRadius="8">
-                            <ScrollViewer x:Name="PART_ContentHost" 
+                                CornerRadius="8"
+                                TextElement.Foreground="{TemplateBinding Foreground}">
+                            <ScrollViewer x:Name="PART_ContentHost"
                                         Margin="{TemplateBinding Padding}"
                                         VerticalAlignment="Center"/>
                         </Border>
