@@ -315,9 +315,22 @@
                                    FontWeight="Bold"
                                    Foreground="#FF555555"
                                    Margin="0,0,0,8"/>
-                        <TextBox x:Name="GroupLeaderNameTextBox"
-                                 Style="{StaticResource InputTextBoxStyle}"/>
-                        
+                        <Border Grid.Row="2"
+                                Background="#80F5F5DC"
+                                BorderBrush="{StaticResource UABCGold}"
+                                BorderThickness="2"
+                                CornerRadius="8"
+                                Height="50"
+                                VerticalAlignment="Top">
+                            <TextBox x:Name="GroupLeaderNameTextBox"
+                                     Background="Transparent"
+                                     BorderThickness="0"
+                                     Padding="15,12"
+                                     FontSize="14"
+                                     VerticalContentAlignment="Center"
+                                     />
+                        </Border>
+
                         
                     </StackPanel>
 
@@ -367,9 +380,22 @@
                                    Margin="0,0,0,8"/>
                         
                         
-                        <TextBox x:Name="GroupSizeTextBox"
-                                 Style="{StaticResource InputTextBoxStyle}"
-                                 PreviewTextInput="NumberValidationTextBox"/>
+                        <Border Grid.Row="2"
+                                Background="#80F5F5DC"
+                                BorderBrush="{StaticResource UABCGold}"
+                                BorderThickness="2"
+                                CornerRadius="8"
+                                Height="50"
+                                VerticalAlignment="Top">
+                            <TextBox x:Name="GroupSizeTextBox"
+                                     Background="Transparent"
+                                     BorderThickness="0"
+                                     Padding="15,12"
+                                     FontSize="14"
+                                     VerticalContentAlignment="Center"
+                                     />
+                        </Border>
+
                         <TextBlock x:Name="GroupSizePlaceholder"
                                    Text="Ej. 10"
                                    FontSize="14"
