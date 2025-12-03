@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="Registro_de_carnets.RegistroIndividual"
+﻿<UserControl x:Class="Registro_de_carnets.CimaRegistro"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -6,9 +6,8 @@
              xmlns:local="clr-namespace:Registro_de_carnets"
              mc:Ignorable="d"
              d:DesignHeight="900" d:DesignWidth="1200">
-
-
-    <UserControl.Resources>
+    
+<UserControl.Resources>
         <!-- Colores UABC -->
         <SolidColorBrush x:Key="UABCGreen" Color="#00594D"/>
         <SolidColorBrush x:Key="UABCGold" Color="#D7A22A"/>
@@ -303,7 +302,7 @@
                 
 
                 <!-- Título -->
-                <TextBlock Text="Registro Individual" 
+                <TextBlock Text="Cima Registro" 
                            FontSize="56" 
                            FontWeight="Black" 
                            Foreground="{StaticResource UABCGreen}"
@@ -316,7 +315,7 @@
                     
                     <!-- Campo: Nombre completo -->
                     <StackPanel Margin="0,0,0,30">
-                        <TextBlock Text="Nombre completo *" 
+                        <TextBlock x:Name="MatriculaLabel" Text="Matricula *" 
                                    FontSize="13" 
                                    FontWeight="Medium"
                                    Foreground="#FF555555"
@@ -327,16 +326,18 @@
                                 CornerRadius="8"
                                 Height="50"
                                 VerticalAlignment="Top">
-                            <TextBox x:Name="NombreCompletoTextBox"
+                            <TextBox x:Name="MatriculaTextBox"
                                      Background="Transparent"
                                      BorderThickness="0"
                                      Padding="15,12"
                                      FontSize="14"
-                                     VerticalContentAlignment="Center"/>
+                                     VerticalContentAlignment="Center"
+                                     MaxLength="7"
+                                     PreviewTextInput="MatriculaTextBox_PreviewTextInput"/>
                         </Border>
                         
                         <TextBlock x:Name="FullNamePlaceholder"
-                                   Text="Ej. Juan Pérez"
+                                   Text="Ej. 1234567"
                                    FontSize="14"
                                    Foreground="#FF999999"
                                    IsHitTestVisible="False"
@@ -357,7 +358,7 @@
                     
                     <!-- Area de genero -->
                     <StackPanel  Margin="0,0,0,25">
-                        <TextBlock Text="Seleccione el genero*" 
+                        <TextBlock x:Name="GenderLabel" Text="Seleccione el genero*" 
                                    FontSize="13" 
                                    FontWeight="Bold"
                                    Foreground="#FF555555"
@@ -370,64 +371,14 @@
                             <ComboBoxItem Content="Otro" Foreground="{StaticResource GenderOtherColor}"/>
                         </ComboBox>
                     </StackPanel>
-
-                    <!-- Campo: Correo electrónico -->
-                    <StackPanel Margin="0,0,0,30">
-                        <TextBlock Text="Correo electrónico *" 
-                                   FontSize="13" 
-                                   FontWeight="Medium"
-                                   Foreground="#FF555555"
-                                   Margin="0,0,0,8"/>
-                        <Border Grid.Row="2"
-                                Background="#80F5F5DC"
-                                BorderBrush="{StaticResource UABCGold}"
-                                BorderThickness="2"
-                                CornerRadius="8"
-                                Height="50"
-                                VerticalAlignment="Top">
-                            <TextBox x:Name="CorreoElectronicoTextBox"
-                                     Background="Transparent"
-                                     BorderThickness="0"
-                                     Padding="15,12"
-                                     FontSize="14"
-                                     VerticalContentAlignment="Center"
-                                     />
-                        </Border>
-
-                        <TextBlock x:Name="EmailPlaceholder"
-                                   Text="juan.perez@uabc.edu.mx"
-                                   FontSize="14"
-                                   Foreground="#FF999999"
-                                   IsHitTestVisible="False"
-                                   Margin="17,5,0,0"
-                                   VerticalAlignment="Top">
-                            <TextBlock.Style>
-                                <Style TargetType="TextBlock">
-                                    <Setter Property="Visibility" Value="Visible"/>
-                                    <Style.Triggers>
-                                        <DataTrigger Binding="{Binding Text, ElementName=EmailTextBox}" Value="">
-                                            <Setter Property="Visibility" Value="Visible"/>
-                                        </DataTrigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </TextBlock.Style>
-                        </TextBlock>
-                        <TextBlock x:Name="EmailErrorMessage"
-                                   Text="Por favor, introduce un correo electrónico válido."
-                                   FontSize="12"
-                                   Foreground="#FFE53E3E"
-                                   Margin="0,8,0,0"
-                                   Visibility="Collapsed"/>
-                    </StackPanel>
+                    
 
                     <!-- Botón Registrar -->
                     <Button x:Name="SubmitButton"
                             Content="Registrar"
                             Style="{StaticResource SubmitButtonStyle}"
                             Margin="0,15,0,0"
-                            Click="SubmitButton_OnClick"
-                            />
-                    
+                            Click="SubmitButton_OnClick"/>
                 </StackPanel>
                 
             </StackPanel>

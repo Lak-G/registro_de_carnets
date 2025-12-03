@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:Registro_de_carnets"
              mc:Ignorable="d"
-             d:DesignHeight="800" d:DesignWidth="1200">
+             d:DesignHeight="900" d:DesignWidth="1200">
 
     <UserControl.Resources>
         <!-- Colores UABC -->
@@ -147,24 +147,11 @@
 
         <!-- Contenido Principal -->
         <Grid Grid.Row="1">
-            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Width="900">
-                
-                <!-- Barra de progreso -->
-                <StackPanel Margin="0,0,0,50" HorizontalAlignment="Center" Width="400">
-                    <TextBlock Text="Step 1 of 2" 
-                               FontSize="14" 
-                               FontWeight="Medium" 
-                               Foreground="{StaticResource TextDark}"
-                               HorizontalAlignment="Center"
-                               Margin="0,0,0,12"/>
-                    <Border Background="#334C9C16" CornerRadius="10" Height="8">
-                        <Border Background="{StaticResource PrimaryGreen}" 
-                                CornerRadius="10" 
-                                Width="200" 
-                                HorizontalAlignment="Left"/>
-                    </Border>
-                </StackPanel>
-
+            <StackPanel HorizontalAlignment="Center" 
+                        VerticalAlignment="Center"
+                        Width="900" 
+                        
+                        Margin="0,0,0,0">
                 <!-- Título principal -->
                 <TextBlock Text="Elige un tipo de registro" 
                            FontSize="56" 
@@ -337,19 +324,93 @@
                         </Button.Template>
                     </Button>
                 </Grid>
+                
+                <Button x:Name="CimaRegistrationButton" 
+                            Grid.Column="0" 
+                            Background="Transparent" 
+                            BorderThickness="0"
+                            Padding="0"
+                            RenderTransformOrigin="0.5,0.5">
+                        <Button.RenderTransform>
+                            <RotateTransform Angle="0"/>
+                        </Button.RenderTransform>
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border x:Name="CardBorder" 
+                                        Style="{StaticResource RegistrationCardStyle}"
+                                        RenderTransformOrigin="0.5,0.5">
+                                    <Border.RenderTransform>
+                                        <ScaleTransform ScaleX="1" ScaleY="1"/>
+                                    </Border.RenderTransform>
+                                    <StackPanel HorizontalAlignment="Center">
+                                        <Viewbox Width="60" Height="60" Margin="0,0,0,20">
+                                            <Canvas Width="24" Height="24">
+                                                <Path Fill="{StaticResource UABCGold}" Data="{StaticResource GroupIcon}"/>
+                                            </Canvas>
+                                        </Viewbox>
+                                        <TextBlock Text="Como Cimarrón" 
+                                                   FontSize="28" 
+                                                   FontWeight="Bold" 
+                                                   Foreground="{StaticResource UABCGreen}"
+                                                   TextAlignment="Center"
+                                                   Margin="0,0,0,15"/>
+                                        <TextBlock Text="Registrate como un cimarrón con valores" 
+                                                   FontSize="14" 
+                                                   Foreground="#FF555555"
+                                                   TextWrapping="Wrap"
+                                                   TextAlignment="Center"
+                                                   MaxWidth="280"/>
+                                    </StackPanel>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Trigger.EnterActions>
+                                            <BeginStoryboard>
+                                                <Storyboard>
+                                                    <DoubleAnimation Storyboard.TargetName="CardBorder"
+                                                                   Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)"
+                                                                   To="1.05" Duration="0:0:0.3">
+                                                        <DoubleAnimation.EasingFunction>
+                                                            <CubicEase EasingMode="EaseOut"/>
+                                                        </DoubleAnimation.EasingFunction>
+                                                    </DoubleAnimation>
+                                                    <DoubleAnimation Storyboard.TargetName="CardBorder"
+                                                                   Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)"
+                                                                   To="1.05" Duration="0:0:0.3">
+                                                        <DoubleAnimation.EasingFunction>
+                                                            <CubicEase EasingMode="EaseOut"/>
+                                                        </DoubleAnimation.EasingFunction>
+                                                    </DoubleAnimation>
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </Trigger.EnterActions>
+                                        <Trigger.ExitActions>
+                                            <BeginStoryboard>
+                                                <Storyboard>
+                                                    <DoubleAnimation Storyboard.TargetName="CardBorder"
+                                                                   Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)"
+                                                                   To="1.0" Duration="0:0:0.3"/>
+                                                    <DoubleAnimation Storyboard.TargetName="CardBorder"
+                                                                   Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)"
+                                                                   To="1.0" Duration="0:0:0.3"/>
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </Trigger.ExitActions>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
             </StackPanel>
         </Grid>
 
         <!-- Footer -->
-        <Border Grid.Row="2" Padding="40,30" BorderBrush="#334C9C16" BorderThickness="0,1,0,0">
+        <Border Grid.Row="2" 
+                Padding="40,30" 
+                BorderBrush="#334C9C16" 
+                BorderThickness="0,1,0,0">
             <StackPanel HorizontalAlignment="Center">
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,15">
-                    <TextBlock Text="Privacy Policy" Style="{StaticResource HeaderLinkStyle}" Foreground="#FF666666"/>
-                    <TextBlock Text="Terms of Service" Style="{StaticResource HeaderLinkStyle}" Foreground="#FF666666"/>
-                    <TextBlock Text="Help" Style="{StaticResource HeaderLinkStyle}" Foreground="#FF666666"/>
-                    <TextBlock Text="Contact" Style="{StaticResource HeaderLinkStyle}" Foreground="#FF666666"/>
-                </StackPanel>
-                <TextBlock Text="© 2024 UABC. All Rights Reserved." 
+                <TextBlock Text="© 2025 UABC. Todos los derechos reservados." 
                            FontSize="13" 
                            Foreground="#FF888888"
                            HorizontalAlignment="Center"/>

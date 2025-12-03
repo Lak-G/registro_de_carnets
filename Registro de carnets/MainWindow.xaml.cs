@@ -36,11 +36,16 @@ public partial class MainWindow : Window
         {
             NavigateToRegistroIndividual();
         };
+
+        paginaPrincipal.CimaRegistrationButton.Click += (sender, args) =>
+        {
+            NavigateToCimaRegistro();
+        };
     }
     
     private void NavigateToRegistroGrupal()
     {
-        var registroGrupal = new RegistroGrupal();
+        var registroGrupal = new AsistenciaEscuelas();
         PageContainer.Content = registroGrupal;
         
         // Configurar botón de volver
@@ -57,6 +62,18 @@ public partial class MainWindow : Window
         
         // Configurar botón de volver
         registroIndividual.BackButton.Click += (s, e) =>
+        {
+            NavigateToPaginaPrincipal();
+        };
+    }
+
+    private void NavigateToCimaRegistro()
+    {
+        var cimaRegistro = new CimaRegistro();
+        PageContainer.Content = cimaRegistro;
+        
+        //Falta boton de volver
+        cimaRegistro.BackButton.Click += (sender, args) =>
         {
             NavigateToPaginaPrincipal();
         };

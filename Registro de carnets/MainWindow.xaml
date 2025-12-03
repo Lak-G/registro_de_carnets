@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Registro_de_carnets"
         mc:Ignorable="d"
-        Title="MainWindow" Height="800" Width="1200"
+        Title="Registro de evento: *Incerte nombre de evento*" Height="900" Width="1200"
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize"
         Background="#F7F8F6">
