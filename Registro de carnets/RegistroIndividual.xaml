@@ -315,7 +315,9 @@
                     <Button x:Name="SubmitButton"
                             Content="Registrar"
                             Style="{StaticResource SubmitButtonStyle}"
-                            Margin="0,15,0,0"/>
+                            Margin="0,15,0,0"
+                            Click="SubmitButton_OnClick"
+                            />
                     
                 </StackPanel>
                 
