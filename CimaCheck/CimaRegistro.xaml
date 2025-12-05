@@ -284,7 +284,7 @@
 
     <Grid>
         <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
-            <StackPanel HorizontalAlignment="Center"  Width="540" Margin="0,130,0,80">
+            <StackPanel HorizontalAlignment="Center"  Width="540" Margin="0,100,0,80">
                 
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -308,12 +308,11 @@
                            Foreground="{StaticResource UABCGreen}"
                            TextAlignment="Center"
                            TextWrapping="Wrap"
-                           Margin="0,0,0,50"/>
+                           Margin="0,0,0,0"/>
 
                 <!-- Formulario -->
                 <StackPanel>
-                    
-                    <!-- Campo: Nombre completo -->
+                    <!-- Campo Matricula completo -->
                     <StackPanel Margin="0,0,0,30">
                         <TextBlock x:Name="MatriculaLabel" Text="Matricula *" 
                                    FontSize="13" 
@@ -335,8 +334,7 @@
                                      MaxLength="7"
                                      PreviewTextInput="MatriculaTextBox_PreviewTextInput"/>
                         </Border>
-                        
-                        <TextBlock x:Name="FullNamePlaceholder"
+                        <TextBlock x:Name="MatriculaPlaceholder"
                                    Text="Ej. 1234567"
                                    FontSize="14"
                                    Foreground="#FF999999"
@@ -356,11 +354,90 @@
                         </TextBlock>
                     </StackPanel>
                     
+                    
+                    <!-- Campo Nombre completo -->
+                    <StackPanel Margin="0,0,0,20">
+                        <TextBlock x:Name="FullNameLabel" Text="Nombre completo *" 
+                                   FontSize="13" 
+                                   FontWeight="Medium"
+                                   Foreground="#FF555555"
+                                   Margin="0,0,0,8"/>
+                        <Border Background="#80F5F5DC"
+                                BorderBrush="{StaticResource UABCGold}"
+                                BorderThickness="2"
+                                CornerRadius="8"
+                                Height="50"
+                                VerticalAlignment="Top">
+                            <TextBox x:Name="FullNameTextBox"
+                                     Background="Transparent"
+                                     BorderThickness="0"
+                                     Padding="15,12"
+                                     FontSize="14"
+                                     VerticalContentAlignment="Center"/>
+                        </Border>
+                        <TextBlock x:Name="FullNamePlaceholder"
+                                   Text="Ej.  Ana Maria Jimenes Huerta"
+                                   FontSize="14"
+                                   Foreground="#FF999999"
+                                   IsHitTestVisible="False"
+                                   Margin="17,5,0,0"
+                                   VerticalAlignment="Top">
+                            <TextBlock.Style>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding Text, ElementName=FullNameTextBox}" Value="">
+                                            <Setter Property="Visibility" Value="Visible"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBlock.Style>
+                        </TextBlock>
+                    </StackPanel>
+                    
+                    
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        
+                        <!-- Area de facultad -->
+                        <StackPanel Grid.Column="0" Margin="0,0,0,25">
+                            <TextBlock x:Name="FacultyLabel" Text="Facultad*" 
+                                       FontSize="13" 
+                                       FontWeight="Medium"
+                                       Foreground="#FF555555"
+                                       Margin="0,0,0,8"/>
+                            <ComboBox x:Name="FacultyComboBox"
+                                      SelectionChanged="FacultyComboBox_OnSelectionChanged"
+                                      ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                                      Style="{StaticResource InputComboBoxStyle}">
+                                <ComboBoxItem Content="Seleccione Facultad" IsEnabled="False" IsSelected="True" Foreground="#FF999999"/>
+                            </ComboBox>
+                        </StackPanel>
+                        
+                        <!-- Area de programa educativo -->
+                        <StackPanel Grid.Column="1" Margin="0,0,0,25">
+                            <TextBlock x:Name="ProEdLabel" Text="Carrera*" 
+                                       FontSize="13" 
+                                       FontWeight="Bold"
+                                       Foreground="#FF555555"
+                                       Margin="0,0,0,8"/>
+                            <ComboBox x:Name="ProEdComboBox"
+                                      ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                                      Style="{StaticResource InputComboBoxStyle}">
+                                <ComboBoxItem Content="Seleccione una Carrera" IsEnabled="False" IsSelected="True" Foreground="#FF999999"/>
+                            </ComboBox>
+                        </StackPanel>
+                    </Grid>
+                    
+                    
                     <!-- Area de genero -->
-                    <StackPanel  Margin="0,0,0,25">
+                    <StackPanel  Margin="0,0,0,5">
                         <TextBlock x:Name="GenderLabel" Text="Seleccione el genero*" 
                                    FontSize="13" 
-                                   FontWeight="Bold"
+                                   FontWeight="Medium"
                                    Foreground="#FF555555"
                                    Margin="0,0,0,8"/>
                         <ComboBox x:Name="GenderComboBox"
@@ -372,7 +449,12 @@
                         </ComboBox>
                     </StackPanel>
                     
-
+                    
+                    <TextBlock Text="Los Campos Marcados con un * son obligatorios"
+                               FontWeight="Medium"
+                               FontStyle="Oblique"
+                               FontSize="10"
+                               Foreground="#FF555555"/>
                     <!-- Botón Registrar -->
                     <Button x:Name="SubmitButton"
                             Content="Registrar"

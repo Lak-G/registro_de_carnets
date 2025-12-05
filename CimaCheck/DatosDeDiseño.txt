@@ -1,0 +1,40 @@
+﻿Facultad de ingenieria Mexicali
+    Ingeniería Aeroespacial
+    Ingeniería Civil
+    Ingeniería Eléctrica
+    Ingeniería Electrónica
+    Ingeniería en Computación
+    Ingeniería en Energías Renovables
+    Ingeniería en Semiconductores y Microelectrónica (Es una carrera de reciente creación)
+    Ingeniería Industrial
+    Ingeniería Mecánica
+    Ingeniería Mecatrónica
+    Bioingeniería
+    Licenciatura en Sistemas Computacionales
+    
+Facultad de arquitectura y diseño
+    Arquitectura
+    Licenciatura en Diseño Gráfico
+    Licenciatura en Diseño Industrial
+    
+Facultad de derecho 
+    Licenciatura en Derecho
+
+Facultad de Pedagogía e Innovación Educativa (FPIE)
+    Licenciatura en Psicopedagogía
+    Licenciatura en Docencia de la Matemática
+    Licenciatura en Docencia de la Lengua y la Literatura
+    Licenciatura en Docencia de las Ciencias
+
+Facultad de Idiomas
+    Licenciatura en Traducción
+    Licenciatura en Enseñanza de Lenguas
+
+Facultad de Artes
+    Licenciatura en Artes Cinematográficas y Producción Audiovisual
+    Licenciatura en Animación Digital y Efectos Visuales
+    Licenciatura en Artes Visuales
+
+Facultad de Deportes
+    Licenciatura en Actividad Física y Deporte
+    

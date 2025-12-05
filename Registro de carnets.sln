@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Registro de carnets", "Registro de carnets\Registro de carnets.csproj", "{83E9E7A0-9499-4443-97E4-4FAECB5EC483}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CimaCheck", "CimaCheck\CimaCheck.csproj", "{83E9E7A0-9499-4443-97E4-4FAECB5EC483}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

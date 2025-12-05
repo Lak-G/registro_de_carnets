@@ -88,61 +88,61 @@
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
                         <ControlTemplate.Triggers>
-    <EventTrigger RoutedEvent="MouseEnter">
-        <BeginStoryboard>
-            <Storyboard>
-                <DoubleAnimation Storyboard.TargetName="scaleTransform"
-                               Storyboard.TargetProperty="ScaleX"
-                               To="1.02" Duration="0:0:0.2"/>
-                <DoubleAnimation Storyboard.TargetName="scaleTransform"
-                               Storyboard.TargetProperty="ScaleY"
-                               To="1.02" Duration="0:0:0.2"/>
-                <DoubleAnimation Storyboard.TargetName="shadow"
-                               Storyboard.TargetProperty="BlurRadius"
-                               To="15" Duration="0:0:0.2"/>
-            </Storyboard>
-        </BeginStoryboard>
-    </EventTrigger>
-    <EventTrigger RoutedEvent="MouseLeave">
-        <BeginStoryboard>
-            <Storyboard>
-                <DoubleAnimation Storyboard.TargetName="scaleTransform"
-                               Storyboard.TargetProperty="ScaleX"
-                               To="1" Duration="0:0:0.2"/>
-                <DoubleAnimation Storyboard.TargetName="scaleTransform"
-                               Storyboard.TargetProperty="ScaleY"
-                               To="1" Duration="0:0:0.2"/>
-                <DoubleAnimation Storyboard.TargetName="shadow"
-                               Storyboard.TargetProperty="BlurRadius"
-                               To="10" Duration="0:0:0.2"/>
-            </Storyboard>
-        </BeginStoryboard>
-    </EventTrigger>
-    <EventTrigger RoutedEvent="PreviewMouseDown">
-        <BeginStoryboard>
-            <Storyboard>
-                <DoubleAnimation Storyboard.TargetName="scaleTransform"
-                               Storyboard.TargetProperty="ScaleX"
-                               To="0.98" Duration="0:0:0.1"/>
-                <DoubleAnimation Storyboard.TargetName="scaleTransform"
-                               Storyboard.TargetProperty="ScaleY"
-                               To="0.98" Duration="0:0:0.1"/>
-            </Storyboard>
-        </BeginStoryboard>
-    </EventTrigger>
-    <EventTrigger RoutedEvent="PreviewMouseUp">
-        <BeginStoryboard>
-            <Storyboard>
-                <DoubleAnimation Storyboard.TargetName="scaleTransform"
-                               Storyboard.TargetProperty="ScaleX"
-                               To="1.02" Duration="0:0:0.1"/>
-                <DoubleAnimation Storyboard.TargetName="scaleTransform"
-                               Storyboard.TargetProperty="ScaleY"
-                               To="1.02" Duration="0:0:0.1"/>
-            </Storyboard>
-        </BeginStoryboard>
-    </EventTrigger>
-</ControlTemplate.Triggers>
+                            <EventTrigger RoutedEvent="MouseEnter">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="scaleTransform"
+                                                       Storyboard.TargetProperty="ScaleX"
+                                                       To="1.02" Duration="0:0:0.2"/>
+                                        <DoubleAnimation Storyboard.TargetName="scaleTransform"
+                                                       Storyboard.TargetProperty="ScaleY"
+                                                       To="1.02" Duration="0:0:0.2"/>
+                                        <DoubleAnimation Storyboard.TargetName="shadow"
+                                                       Storyboard.TargetProperty="BlurRadius"
+                                                       To="15" Duration="0:0:0.2"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                            <EventTrigger RoutedEvent="MouseLeave">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="scaleTransform"
+                                                       Storyboard.TargetProperty="ScaleX"
+                                                       To="1" Duration="0:0:0.2"/>
+                                        <DoubleAnimation Storyboard.TargetName="scaleTransform"
+                                                       Storyboard.TargetProperty="ScaleY"
+                                                       To="1" Duration="0:0:0.2"/>
+                                        <DoubleAnimation Storyboard.TargetName="shadow"
+                                                       Storyboard.TargetProperty="BlurRadius"
+                                                       To="10" Duration="0:0:0.2"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                            <EventTrigger RoutedEvent="PreviewMouseDown">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="scaleTransform"
+                                                       Storyboard.TargetProperty="ScaleX"
+                                                       To="0.98" Duration="0:0:0.1"/>
+                                        <DoubleAnimation Storyboard.TargetName="scaleTransform"
+                                                       Storyboard.TargetProperty="ScaleY"
+                                                       To="0.98" Duration="0:0:0.1"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                            <EventTrigger RoutedEvent="PreviewMouseUp">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="scaleTransform"
+                                                       Storyboard.TargetProperty="ScaleX"
+                                                       To="1.02" Duration="0:0:0.1"/>
+                                        <DoubleAnimation Storyboard.TargetName="scaleTransform"
+                                                       Storyboard.TargetProperty="ScaleY"
+                                                       To="1.02" Duration="0:0:0.1"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                        </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>

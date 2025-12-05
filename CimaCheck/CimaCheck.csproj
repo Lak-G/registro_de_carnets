@@ -14,6 +14,7 @@
       <PackageReference Include="Microsoft.Extensions.Configuration" Version="10.0.0" />
       <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="10.0.0" />
       <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="10.0.0" />
+      <PackageReference Include="TursoSharp" Version="0.1.3-preview" />
     </ItemGroup>
 
     <ItemGroup>
@@ -21,6 +22,15 @@
       <Content Include="appsettings.json">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </Content>
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="Resources\icons\female.png" />
+      <Resource Include="Resources\icons\female.png" />
+      <None Remove="Resources\icons\male.png" />
+      <Resource Include="Resources\icons\male.png" />
+      <None Remove="Resources\icons\other.png" />
+      <Resource Include="Resources\icons\other.png" />
     </ItemGroup>
 
 </Project>

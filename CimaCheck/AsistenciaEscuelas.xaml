@@ -193,6 +193,139 @@
             </Setter>
         </Style>
         
+         <!-- Estilo para botón de submit -->
+        <Style x:Key="SubmitButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="{StaticResource UABCGreen}"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Height" Value="56"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="border"
+                                Background="{TemplateBinding Background}"
+                                CornerRadius="8"
+                                RenderTransformOrigin="0.5,0.5">
+                            <Border.RenderTransform>
+                                <ScaleTransform x:Name="scaleTransform" ScaleX="1" ScaleY="1"/>
+                            </Border.RenderTransform>
+                            <Border.Effect>
+                                <DropShadowEffect x:Name="shadow" 
+                                                ShadowDepth="3" 
+                                                BlurRadius="10" 
+                                                Opacity="0.3" 
+                                                Color="#00594D"/>
+                            </Border.Effect>
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <EventTrigger RoutedEvent="MouseEnter">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="scaleTransform"
+                                                       Storyboard.TargetProperty="ScaleX"
+                                                       To="1.02" Duration="0:0:0.2"/>
+                                        <DoubleAnimation Storyboard.TargetName="scaleTransform"
+                                                       Storyboard.TargetProperty="ScaleY"
+                                                       To="1.02" Duration="0:0:0.2"/>
+                                        <DoubleAnimation Storyboard.TargetName="shadow"
+                                                       Storyboard.TargetProperty="BlurRadius"
+                                                       To="15" Duration="0:0:0.2"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                            <EventTrigger RoutedEvent="MouseLeave">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="scaleTransform"
+                                                       Storyboard.TargetProperty="ScaleX"
+                                                       To="1" Duration="0:0:0.2"/>
+                                        <DoubleAnimation Storyboard.TargetName="scaleTransform"
+                                                       Storyboard.TargetProperty="ScaleY"
+                                                       To="1" Duration="0:0:0.2"/>
+                                        <DoubleAnimation Storyboard.TargetName="shadow"
+                                                       Storyboard.TargetProperty="BlurRadius"
+                                                       To="10" Duration="0:0:0.2"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                            <EventTrigger RoutedEvent="PreviewMouseDown">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="scaleTransform"
+                                                       Storyboard.TargetProperty="ScaleX"
+                                                       To="0.98" Duration="0:0:0.1"/>
+                                        <DoubleAnimation Storyboard.TargetName="scaleTransform"
+                                                       Storyboard.TargetProperty="ScaleY"
+                                                       To="0.98" Duration="0:0:0.1"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                            <EventTrigger RoutedEvent="PreviewMouseUp">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="scaleTransform"
+                                                       Storyboard.TargetProperty="ScaleX"
+                                                       To="1.02" Duration="0:0:0.1"/>
+                                        <DoubleAnimation Storyboard.TargetName="scaleTransform"
+                                                       Storyboard.TargetProperty="ScaleY"
+                                                       To="1.02" Duration="0:0:0.1"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        
+        <!-- Estilo para CheckBox -->
+        <Style x:Key="CheckBoxUABC" TargetType="CheckBox">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Width" Value="20"/>
+            <Setter Property="Height" Value="20"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="CheckBox">
+                        <Grid>
+                            <!-- Borde dorado -->
+                            <Border x:Name="Border"
+                                    Width="20"
+                                    Height="20"
+                                    BorderBrush="{StaticResource UABCGold}"
+                                    BorderThickness="2"
+                                    CornerRadius="4"
+                                    Background="White">
+                                
+                                <!-- Check verde (inicialmente oculto) -->
+                                <Path x:Name="CheckMark"
+                                      Data="M 0,5 L 5,10 L 12,0"
+                                      Stroke="{StaticResource UABCGreen}"
+                                      StrokeThickness="2.5"
+                                      Stretch="Uniform"
+                                      Margin="3"
+                                      Visibility="Collapsed"/>
+                            </Border>
+                        </Grid>
+                        
+                        <ControlTemplate.Triggers>
+                            <!-- Cuando está checked, mostrar el check verde -->
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter TargetName="CheckMark" Property="Visibility" Value="Visible"/>
+                            </Trigger>
+                            
+                            <!-- Hover effect -->
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Border" Property="Background" Value="#FFF9F4E8"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
         
     </UserControl.Resources>
     
@@ -255,7 +388,7 @@
             <Button x:Name="BackButton" 
                     Style="{StaticResource BackButtonStyle}"
                     HorizontalAlignment="Left"
-                    Margin="0,0,0,0"/>
+                    Margin="0,30,0,0"/>
 
             <!-- Título y Subtitulo-->
             <StackPanel>
@@ -314,19 +447,28 @@
                                  BorderThickness="0"
                                  Padding="15,12"
                                  FontSize="14"
-                                 VerticalContentAlignment="Center"/>
+                                 VerticalContentAlignment="Center"
+                                 TextChanged="NombreCompletoTextBox_OnTextChanged"/>
                     </Border>
                 </StackPanel>
                 
             </Grid>
-            <!-- Formulario -->
-            <ScrollViewer VerticalScrollBarVisibility="Auto"
+            <!-- Area de lista de datos -->
+            <ScrollViewer Height="425" 
+                          VerticalScrollBarVisibility="Hidden"
                           HorizontalScrollBarVisibility="Disabled">
                 <StackPanel x:Name="ContenedorTarjetas" 
                             Margin="10">
-                    <!-- Las tarjetas se agregarán aquí dinámicamente -->
+                    <!-- Las tarjetas se agregaran aqui dinamicamente -->
                 </StackPanel>
             </ScrollViewer>
+            <StackPanel>
+                <Button x:Name="SubmitButton"
+                        Content="Registrar seleccionados"
+                        Style="{StaticResource SubmitButtonStyle}"
+                        Margin="0,15,0,0"
+                />
+            </StackPanel>
         </StackPanel>
     </Grid>
 </UserControl>
