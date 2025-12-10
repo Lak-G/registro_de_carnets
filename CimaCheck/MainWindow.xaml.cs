@@ -8,6 +8,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Registro_de_carnets.Services;
 
 namespace Registro_de_carnets;
 
@@ -16,6 +17,12 @@ public partial class MainWindow : Window
     public MainWindow()
     {
         InitializeComponent();
+        
+        //con esto prove la conexion pero no lo queiro borrar
+        // Loaded += async (s, e) =>
+        // {
+        //     await DataManager.ProbarConexionAsync();
+        // };
         
         // Cargar la página principal al inicio
         NavigateToPaginaPrincipal();

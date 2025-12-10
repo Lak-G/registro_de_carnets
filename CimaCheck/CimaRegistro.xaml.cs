@@ -3,6 +3,8 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
+using Registro_de_carnets.Modelos;
+using Registro_de_carnets.Services;
 using Color = System.Windows.Media.Color;
 
 namespace Registro_de_carnets;
@@ -77,7 +79,9 @@ public partial class CimaRegistro : UserControl
         "Licenciatura en Actividad Física y Deporte"
     };
     #endregion
+
     
+
     public CimaRegistro()
     {
         InitializeComponent();
@@ -110,7 +114,11 @@ public partial class CimaRegistro : UserControl
         
         //funcionalidad para subir a base de datos *En trabajo*
     }
-    
+    /// <summary>
+    /// Metodo para que el textbox solo tenga letras
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     private void MatriculaTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
     {
         // Solo permite números
@@ -122,41 +130,63 @@ public partial class CimaRegistro : UserControl
         return text.All(char.IsDigit);
     }
 
-    private void FacultyComboBox_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
-    {
-        switch (FacultyComboBox.SelectedItem.ToString())
-        {
-            case "Facultad de ingenieria Mexicali (FIM)":
-                LoadProEdList(listIngenieria);
-                break;
-            case "Facultad de arquitectura y diseño (FAD)":
-                LoadProEdList(listArquitectura);
-                break;
-            case "Facultad de derecho":
-                LoadProEdList(listDerecho);
-                ProEdComboBox.SelectedIndex = 1;
-                break;
-            case "Facultad de Pedagogía e Innovación Educativa (FPIE)":
-                LoadProEdList(listFPIE);
-                break;
-            case "Facultad de Idiomas":
-                LoadProEdList(listIdiomas);
-                break;
-            case "Facultad de Artes":
-                LoadProEdList(listArtes);
-                break;
-            case "Facultad de Deportes":
-                LoadProEdList(listDeportes);
-                ProEdComboBox.SelectedIndex = 1;
-                break;
-        }
-    }
+    // private async void FacultyComboBox_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+    // {
+    //     switch (FacultyComboBox.SelectedItem.ToString())
+    //     {
+    //         case "Facultad de ingenieria Mexicali (FIM)":
+    //             var lsCarreras = DataManager.ObtenerCarrerasPorFacultadAsync(FacultyComboBox.SelectedIndex);
+    //
+    //             LoadProEdList(lsCarreras);
+    //             break;
+    //         case "Facultad de arquitectura y diseño (FAD)":
+    //             LoadProEdList(listArquitectura);
+    //             break;
+    //         case "Facultad de derecho":
+    //             LoadProEdList(listDerecho);
+    //             ProEdComboBox.SelectedIndex = 1;
+    //             break;
+    //         case "Facultad de Pedagogía e Innovación Educativa (FPIE)":
+    //             LoadProEdList(listFPIE);
+    //             break;
+    //         case "Facultad de Idiomas":
+    //             LoadProEdList(listIdiomas);
+    //             break;
+    //         case "Facultad de Artes":
+    //             LoadProEdList(listArtes);
+    //             break;
+    //         case "Facultad de Deportes":
+    //             LoadProEdList(listDeportes);
+    //             ProEdComboBox.SelectedIndex = 1;
+    //             break;
+    //     }
+    // }
 
+    private async void FacultyComboBox_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        List<Carrera> lsCarreras = await DataManager.ObtenerCarrerasPorFacultadAsync(FacultyComboBox.SelectedIndex);
+
+        LoadProEdList(lsCarreras);
+        
+        object primerItem = ProEdComboBox.Items[0];
+    
+        ProEdComboBox.Items.Clear();
+    
+        ProEdComboBox.Items.Add(primerItem);
+    
+        foreach (var carrera in lsCarreras)
+        {
+            ProEdComboBox.Items.Add(carrera.Nombre);
+        }
+    
+        ProEdComboBox.SelectedIndex = 0;
+    }
+    
     /// <summary>
     /// Metodo para agregar las carreras al comboBox de programa educativo
     /// </summary>
     /// <param name="listCarreras"></param>
-    private void LoadProEdList(List<String> listCarreras)
+    private void LoadProEdList(List<Carrera> listCarreras)
     {
 
         object primerItem = ProEdComboBox.Items[0];
@@ -167,7 +197,7 @@ public partial class CimaRegistro : UserControl
     
         foreach (var carrera in listCarreras)
         {
-            ProEdComboBox.Items.Add(carrera);
+            ProEdComboBox.Items.Add(carrera.Nombre);
         }
     
         ProEdComboBox.SelectedIndex = 0;
@@ -176,11 +206,25 @@ public partial class CimaRegistro : UserControl
     /// <summary>
     /// Metodo para cargar las carreras al inicio de la pantalla
     /// </summary>
-    private void LoadFacultyList()
+    private async void LoadFacultyList()
     {
-        foreach (var facultad in listFacultades)
+        try
         {
-            FacultyComboBox.Items.Add(facultad);
+            List<Facultad> lsFacultades = await DataManager.ObtenerFacultadesAsync();
+            
+            foreach (var facultad in lsFacultades)
+            {
+                FacultyComboBox.Items.Add(facultad.Nombre);
+                Console.WriteLine(facultad.Nombre);
+            }
         }
+        catch (Exception e)
+        {
+            MessageBox.Show($"Error \"{e.Message}\" al obtener las Facultades");
+        }
+        
+        
+        
+        FacultyComboBox.SelectedIndex = 0;
     }
 }

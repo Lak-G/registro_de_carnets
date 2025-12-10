@@ -2,7 +2,7 @@
 
 public class AppSettings
 {
-    public TursoSettings Turso { get; set; }
-    public string AppName {get; set; }
-    public string Version {get; set;}
+    public required SupabaseSettings Supabase { get; set; }
+    public required string AppName { get; set; }
+    public required string Version { get; set; }
 }

@@ -409,12 +409,25 @@
                 Padding="40,30" 
                 BorderBrush="#334C9C16" 
                 BorderThickness="0,1,0,0">
-            <StackPanel HorizontalAlignment="Center">
-                <TextBlock Text="© 2025 UABC. Todos los derechos reservados." 
-                           FontSize="13" 
-                           Foreground="#FF888888"
-                           HorizontalAlignment="Center"/>
-            </StackPanel>
+                <Grid Margin="0,0,0,0">
+                    <TextBlock Text="© 2025 UABC. Todos los derechos reservados." 
+                               FontSize="13" 
+                               Foreground="#FF888888"
+                               HorizontalAlignment="Center"/>
+                    <!-- Estos son para colocar las imagenes para saber si la conexion funciono -->
+                    <Image x:Name="checkImageOk"
+                           Height="20"
+                           Width="20"
+                           Margin="1080,0,0,0"
+                           Source="Resources/icons/ok_icon.png"
+                           Visibility="Hidden"/>
+                    <Image x:Name="checkImageError"
+                           Height="20"
+                           Width="20"
+                           Margin="1080,0,0,0"
+                           Source="Resources/icons/error_icon.png"
+                           Visibility="Hidden"/>
+                </Grid>
         </Border>
     </Grid>
 </UserControl>

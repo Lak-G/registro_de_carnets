@@ -1,19 +1,15 @@
-﻿using System.Configuration;
-using System.Data;
-using System.IO;
+﻿using System.IO;
 using System.Windows;
 using Microsoft.Extensions.Configuration;
+using Registro_de_carnets.Services;
 
 namespace Registro_de_carnets;
 
-/// <summary>
-/// Interaction logic for App.xaml
-/// </summary>
 public partial class App : Application
 {
     public static IConfiguration Configuration { get; private set; }
         
-    protected override void OnStartup(StartupEventArgs e)
+    protected override async void OnStartup(StartupEventArgs e)
     {
         base.OnStartup(e);
             
@@ -23,5 +19,8 @@ public partial class App : Application
             .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
             
         Configuration = builder.Build();
+        
+        // Inicializar Supabase
+        await DataManager.InicializarAsync();
     }
 }

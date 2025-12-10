@@ -2,31 +2,31 @@
 
 public class Persona
 {
+    public int Id { get; set; }
     public string Nombre { get; set; }
-    public int Edad { get; set; }
-    public string Genero { get; set; } // "M" o "F"
-    public bool Seleccionado { get; set; }
+    public string Matricula { get; set; }
+    public int? Edad { get; set; }
+    public string Genero { get; set; } // "M", "F", "O"
+    public string Email { get; set; }
     
-    /// <summary>
-    /// Constructor de la clase Persona
-    /// </summary>
-    public Persona(string nombre, int edad, string genero, bool seleccionado)
-    {
-        Nombre = nombre;
-        Edad = edad;
-        Genero = genero;
-        Seleccionado = seleccionado;
-    }
-
-    /// <summary>
-    /// Constructor vacio de la clase Persona
-    /// </summary>
-    public Persona()
-    {
-        Nombre = "";
-        Edad = 0;
-        Genero = "";
-        Seleccionado = true;
-    }
+    // Para CIMA
+    public int? FacultadId { get; set; }
+    public int? CarreraId { get; set; }
+    public string NombreFacultad { get; set; }
+    public string NombreCarrera { get; set; }
+    
+    // Para GRUPAL
+    public int? EscuelaId { get; set; }
+    public string NombreEscuela { get; set; }
+    public string GrupoResponsable { get; set; }
+    
+    // Tipo y asistencia
+    public string TipoRegistro { get; set; } // "individual", "grupal", "cima"
+    public bool Asistencia { get; set; }
+    public DateTime? FechaAsistencia { get; set; }
+    public DateTime FechaRegistro { get; set; }
+    
+    // Para UI
+    public bool Seleccionado { get; set; }
     
 }

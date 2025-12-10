@@ -10,11 +10,11 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="Libsql.Client" Version="0.5.1" />
       <PackageReference Include="Microsoft.Extensions.Configuration" Version="10.0.0" />
       <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="10.0.0" />
       <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="10.0.0" />
-      <PackageReference Include="TursoSharp" Version="0.1.3-preview" />
+      <PackageReference Include="postgrest-csharp" Version="3.5.1" />
+      <PackageReference Include="supabase-csharp" Version="0.16.2" />
     </ItemGroup>
 
     <ItemGroup>
@@ -31,6 +31,14 @@
       <Resource Include="Resources\icons\male.png" />
       <None Remove="Resources\icons\other.png" />
       <Resource Include="Resources\icons\other.png" />
+      <None Remove="Resources\icons\error_icon.png" />
+      <Resource Include="Resources\icons\error_icon.png" />
+      <None Remove="Resources\icons\ok_icon.png" />
+      <Resource Include="Resources\icons\ok_icon.png" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Controladores\" />
     </ItemGroup>
 
 </Project>

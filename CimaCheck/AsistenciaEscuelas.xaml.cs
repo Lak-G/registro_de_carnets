@@ -36,8 +36,6 @@ public partial class AsistenciaEscuelas : UserControl
     {
         InitializeComponent();
         CargarTarjetas();
-        
-
     }
 
 

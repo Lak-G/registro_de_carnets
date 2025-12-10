@@ -316,7 +316,7 @@
                     
                     <!-- Campo: Nombre completo -->
                     <StackPanel Margin="0,0,0,30">
-                        <TextBlock Text="Nombre completo *" 
+                        <TextBlock x:Name="NombreCompletoLabel" Text="Nombre completo *" 
                                    FontSize="13" 
                                    FontWeight="Medium"
                                    Foreground="#FF555555"
@@ -357,9 +357,8 @@
                     
                     <!-- Area de genero -->
                     <StackPanel  Margin="0,0,0,25">
-                        <TextBlock Text="Seleccione el genero*" 
+                        <TextBlock x:Name="GenderLabel" Text="Seleccione el genero*" 
                                    FontSize="13" 
-                                   FontWeight="Bold"
                                    Foreground="#FF555555"
                                    Margin="0,0,0,8"/>
                         <ComboBox x:Name="GenderComboBox"
@@ -373,7 +372,7 @@
 
                     <!-- Campo: Correo electrónico -->
                     <StackPanel Margin="0,0,0,30">
-                        <TextBlock Text="Correo electrónico *" 
+                        <TextBlock x:Name="CorreoElectronicoLabel" Text="Correo electrónico *" 
                                    FontSize="13" 
                                    FontWeight="Medium"
                                    Foreground="#FF555555"
@@ -395,7 +394,7 @@
                         </Border>
 
                         <TextBlock x:Name="EmailPlaceholder"
-                                   Text="juan.perez@uabc.edu.mx"
+                                   Text="juan.perez@gmail.com"
                                    FontSize="14"
                                    Foreground="#FF999999"
                                    IsHitTestVisible="False"
