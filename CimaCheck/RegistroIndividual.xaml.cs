@@ -56,14 +56,12 @@ public partial class RegistroIndividual : UserControl
         _ = DataManager.RegistrarIndividualAsync(nombre, genero, correo);
     }
     
+    
 
-    private void NombreCompletoTextBox_OnPreviewTextInput(object sender, TextCompositionEventArgs e)
+    private void LimpiarFormulario()
     {
-        // Solo permite números
-        e.Handled = !IsTextNumeric(e.Text);
-    }
-    private bool IsTextNumeric(string text)
-    {
-        return text.All(char.IsDigit);
+        NombreCompletoTextBox.Text = "";
+        CorreoElectronicoTextBox.Text = "";
+        GenderComboBox.SelectedIndex = 0;
     }
 }

@@ -94,7 +94,7 @@ public partial class CimaRegistro : UserControl
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
-    private void SubmitButton_OnClick(object sender, RoutedEventArgs e)
+    private async void SubmitButton_OnClick(object sender, RoutedEventArgs e)
     {
         if (MatriculaTextBox.Text == "" || GenderComboBox.SelectedIndex == 0 || ProEdComboBox.SelectedIndex == 0 || FacultyComboBox.SelectedIndex == 0 || FullNameTextBox.Text.Trim() == "")
         {
@@ -113,7 +113,34 @@ public partial class CimaRegistro : UserControl
         FullNameLabel.Foreground = new SolidColorBrush(Colors.Black);
         
         //funcionalidad para subir a base de datos *En trabajo*
+        
+        string genero = "";
+        if(GenderComboBox.SelectedItem is ComboBoxItem selectedItem)
+        {
+            genero= selectedItem.Content.ToString() switch
+            {
+                "Masculino" => "M",
+                "Femenino" => "F",
+                "Otro" => "O",
+                _ => ""
+            };
+        }
+        
+        bool registrado = await DataManager.RegistrarCimaAsync(MatriculaTextBox.Text, FullNameTextBox.Text.Trim(), FacultyComboBox.SelectedIndex, ProEdComboBox.SelectedIndex, genero);
+        if (registrado)
+        {
+            var dialog = new RegistroExitosoDialog();
+            dialog.Owner = Window.GetWindow(this);
+            dialog.ShowDialog();
+            LimpiarFormulario();
+        }
+        else
+        {
+            MessageBox.Show("Error al registrar. Por favor intenta de nuevo.", 
+                "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+        }
     }
+    
     /// <summary>
     /// Metodo para que el textbox solo tenga letras
     /// </summary>
@@ -226,5 +253,14 @@ public partial class CimaRegistro : UserControl
         
         
         FacultyComboBox.SelectedIndex = 0;
+    }
+
+    private void LimpiarFormulario()
+    {
+        MatriculaTextBox.Text = "";
+        FullNameTextBox.Text = "";
+        FacultyComboBox.SelectedIndex = 0;
+        ProEdComboBox.SelectedIndex = 0;
+        GenderComboBox.SelectedIndex = 0;
     }
 }
