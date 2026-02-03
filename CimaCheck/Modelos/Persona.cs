@@ -1,5 +1,8 @@
 ﻿namespace Registro_de_carnets.Modelos;
 
+/// <summary>
+/// Esta clase quedo obsoleta con la actualizacion de la base de datos en la version 2.0
+/// </summary>
 public class Persona
 {
     public int Id { get; set; }

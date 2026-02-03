@@ -79,9 +79,7 @@ public partial class CimaRegistro : UserControl
         "Licenciatura en Actividad Física y Deporte"
     };
     #endregion
-
     
-
     public CimaRegistro()
     {
         InitializeComponent();
@@ -117,29 +115,31 @@ public partial class CimaRegistro : UserControl
         string genero = "";
         if(GenderComboBox.SelectedItem is ComboBoxItem selectedItem)
         {
-            genero= selectedItem.Content.ToString() switch
+            genero = selectedItem.Content.ToString() switch
             {
-                "Masculino" => "M",
-                "Femenino" => "F",
-                "Otro" => "O",
+                "Masculino" => "Masculino",
+                "Femenino" => "Femenino",
+                "Otro" => "Otro",
                 _ => ""
             };
         }
         
-        bool registrado = await DataManager.RegistrarCimaAsync(MatriculaTextBox.Text, FullNameTextBox.Text.Trim(), FacultyComboBox.SelectedIndex, ProEdComboBox.SelectedIndex, genero);
-        if (registrado)
-        {
-            var dialog = new RegistroExitosoDialog();
-            dialog.Owner = Window.GetWindow(this);
-            dialog.ShowDialog();
-            LimpiarFormulario();
-        }
-        else
-        {
-            MessageBox.Show("Error al registrar. Por favor intenta de nuevo.", 
-                "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-        }
+         bool registrado = await DataManager.RegistrarCimaAsync(FullNameTextBox.Text.Trim(), genero  , FacultyComboBox.SelectedIndex, ProEdComboBox.SelectedIndex);
+         if (registrado)
+         {
+             var dialog = new RegistroExitosoDialog();
+             dialog.Owner = Window.GetWindow(this);
+             dialog.ShowDialog();
+             LimpiarFormulario();
+         }
+         else
+         {
+             MessageBox.Show("Error al registrar. Por favor intenta de nuevo.", 
+                 "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+         }
     }
+
+    #region letras
     
     /// <summary>
     /// Metodo para que el textbox solo tenga letras
@@ -188,7 +188,7 @@ public partial class CimaRegistro : UserControl
     //             break;
     //     }
     // }
-
+    #endregion
     private async void FacultyComboBox_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
     {
         List<Carrera> lsCarreras = await DataManager.ObtenerCarrerasPorFacultadAsync(FacultyComboBox.SelectedIndex);
@@ -215,7 +215,6 @@ public partial class CimaRegistro : UserControl
     /// <param name="listCarreras"></param>
     private void LoadProEdList(List<Carrera> listCarreras)
     {
-
         object primerItem = ProEdComboBox.Items[0];
     
         ProEdComboBox.Items.Clear();

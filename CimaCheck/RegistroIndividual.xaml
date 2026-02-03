@@ -284,8 +284,8 @@
     </UserControl.Resources>
 
     <Grid>
-        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
-            <StackPanel HorizontalAlignment="Center"  Width="540" Margin="0,130,0,80">
+        <ScrollViewer VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Disabled">
+            <StackPanel HorizontalAlignment="Center"  Width="540" Margin="0,100,0,80">
                 
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -418,12 +418,23 @@
                                    Margin="0,8,0,0"
                                    Visibility="Collapsed"/>
                     </StackPanel>
+                    
+                    <StackPanel>
+                        <TextBlock x:Name="OrganizationLabel" Text="Seleccione el genero*" 
+                                   FontSize="13" 
+                                   Foreground="#FF555555"
+                                   Margin="0,0,0,8"/>
+                        <ComboBox x:Name="OrganizationComboBox"
+                                  Style="{StaticResource InputComboBoxStyle}">
+                            <ComboBoxItem Content="Selecciona una Organización" IsEnabled="False" IsSelected="True"/>
+                        </ComboBox>
+                    </StackPanel>
 
                     <!-- Botón Registrar -->
                     <Button x:Name="SubmitButton"
                             Content="Registrar"
                             Style="{StaticResource SubmitButtonStyle}"
-                            Margin="0,15,0,0"
+                            Margin="0,25,0,0"
                             Click="SubmitButton_OnClick"
                             />
                     

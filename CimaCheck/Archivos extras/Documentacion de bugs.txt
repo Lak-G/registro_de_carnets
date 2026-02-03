@@ -1,0 +1,3 @@
+﻿1. al guardar a un cimarron no se guarda el programa educativo seleccionado:
+    este error se da por el manejo de los indices al momento de hacer el registro de los datos
+    (CimaRegistro.xaml.cs : 127)

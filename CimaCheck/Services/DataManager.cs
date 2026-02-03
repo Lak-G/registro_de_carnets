@@ -41,7 +41,7 @@ public static class DataManager
 
             var response = await _supabase
                 .From<FacultadDb>()
-                .Where(f => f.Activo == true)
+                //.Where(f => f.Activo == true)
                 //.Order("nombre", Postgrest.Constants.Ordering.Ascending)
                 .Get();
             
@@ -49,8 +49,8 @@ public static class DataManager
             {
                 Id = f.Id,
                 Nombre = f.Nombre,
-                Abreviatura = f.Abreviatura,
-                Activo = f.Activo
+                Id_facultad = f.Id_facultad,
+                Id_programa = f.Id_programa
             }).ToList();
         }
         catch (Exception ex)
@@ -73,16 +73,16 @@ public static class DataManager
 
             var response = await _supabase
                 .From<CarreraDb>()
-                .Where(c => c.FacultadId == facultadId && c.Activo == true)
+                .Where(c => c.IdFacultad == facultadId)
                 .Order("nombre", Postgrest.Constants.Ordering.Ascending)
                 .Get();
             
             return response.Models.Select(c => new Carrera
             {
                 Id = c.Id,
-                FacultadId = c.FacultadId,
-                Nombre = c.Nombre,
-                Activo = c.Activo
+                IdPrograma = c.IdPrograma,
+                FacultadId = c.IdFacultad,
+                Nombre = c.Nombre
             }).ToList();
         }
         catch (Exception ex)
@@ -94,27 +94,55 @@ public static class DataManager
     
     #endregion
     
-    #region Registro CIMA
-    
-    public static async Task<bool> RegistrarCimaAsync(string matricula, string nombreCompleto,
-        int facultadId, int carreraId, string genero)
+    #region companies
+
+    public static async Task<List<Companie>> ObtenerCompanies()
     {
         try
         {
             if (_supabase == null)
                 throw new InvalidOperationException("Supabase no ha sido inicializado");
 
-            var persona = new PersonaDb
+            var response = await _supabase
+                .From<CompanieDb>()
+                //.Order("nombre_proc", Postgrest.Constants.Ordering.Ascending)
+                .Get();
+            
+            return response.Models.Select(c => new Companie
             {
-                NombreCompleto = nombreCompleto,
-                Matricula = matricula,
-                FacultadId = facultadId,
-                CarreraId = carreraId,
-                Genero = genero,
-                TipoRegistro = "cima"
+                Id = c.Id,
+                IdProcedencia = c.IdProcedencia,
+                NombreProc = c.NombreProc
+            }).ToList();
+        }
+        catch (Exception e)
+        {
+            MessageBox.Show($"Error al cargar Compañias: {e.Message}");
+            return new List<Companie>();
+        }
+    }
+
+    #endregion
+    
+    #region Registro CIMA
+    
+    public static async Task<bool> RegistrarCimaAsync(string nombre, string? genero, int facultadId, int carreraId)
+    {
+        try
+        {
+            if (_supabase == null)
+                throw new InvalidOperationException("Supabase no ha sido inicializado");
+
+            var cimarron = new CimarronDb
+            {
+                VisitanteId = 3,
+                Nombre = nombre,
+                IdFacultad = facultadId,
+                IdPrograma = carreraId,
+                Genero = genero
             };
             
-            await _supabase.From<PersonaDb>().Insert(persona);
+            await _supabase.From<CimarronDb>().Insert(cimarron);
             return true;
         }
         catch (Exception ex)
@@ -287,9 +315,9 @@ public static class DataManager
     #endregion
 }
 
-#region Modelos de Base de Datos (Postgrest)
+#region Modelo facultad
 
-[Table("Facultades")]
+[Table("facultad")]
 public class FacultadDb : BaseModel
 {
     [PrimaryKey("id")]
@@ -298,28 +326,35 @@ public class FacultadDb : BaseModel
     [Column("nombre")]
     public string Nombre { get; set; }
     
-    [Column("abreviatura")]
-    public string Abreviatura { get; set; }
+    [Column ("id_facultad")]
+    public int Id_facultad { get; set; }
     
-    [Column("activo")]
-    public bool Activo { get; set; }
+    [Column ("id_programa")]
+    public int Id_programa { get; set; }
 }
+#endregion
 
-[Table("Carreras")]
+#region Modelo programa
+
+[Table("programas")]
 public class CarreraDb : BaseModel
 {
     [PrimaryKey("id")]
     public int Id { get; set; }
     
-    [Column("facultad_id")]
-    public int FacultadId { get; set; }
+    [Column ("id_programa")]
+    public int IdPrograma { get; set; }
+    
+    [Column("id_facultad")]
+    public int IdFacultad { get; set; }
     
     [Column("nombre")]
     public string Nombre { get; set; }
-    
-    [Column("activo")]
-    public bool Activo { get; set; }
+
 }
+#endregion
+
+#region Modelo Escuela
 
 [Table("Escuelas")]
 public class EscuelaDb : BaseModel
@@ -333,6 +368,9 @@ public class EscuelaDb : BaseModel
     [Column("nivel_educativo")]
     public string NivelEducativo { get; set; }
 }
+#endregion
+
+#region Modelo Persona
 
 [Table("Personas")]
 public class PersonaDb : BaseModel
@@ -380,6 +418,38 @@ public class PersonaDb : BaseModel
     public DateTime FechaRegistro { get; set; }
 }
 
+#endregion
+
+#region Modelo Cima
+
+[Table("cimarron")]
+public class CimarronDb : BaseModel
+{
+    [PrimaryKey("id")]
+    public int Id { get; set; }
+    
+    [Column("visitante_id")]
+    public int VisitanteId { get; set; }
+    
+    [Column ("nombre")]
+    public string Nombre { get; set; }
+    
+    [Column("id_facultad")]
+    public int IdFacultad { get; set; }
+    
+    [Column("genero")]
+    public string Genero { get; set; }
+    
+    [Column("id_programa")]
+    public int IdPrograma { get; set; }
+    
+}
+
+#endregion
+
+#region Modelo Alumno Escuela
+
+
 [Table("AlumnosEscuela")]
 public class AlumnoEscuelaDb : BaseModel
 {
@@ -412,3 +482,20 @@ public class AlumnoEscuelaDb : BaseModel
 }
 
 #endregion
+
+#region Modelo Companie
+
+[Table("procedencia")]
+public class CompanieDb : BaseModel
+{
+    [PrimaryKey("id")]
+    public int Id { get; set; }
+    
+    [Column("id_procedencia")]
+    public int IdProcedencia { get; set; }
+    
+    [Column("nombre_proc")]
+    public string NombreProc { get; set; }
+}
+#endregion
+

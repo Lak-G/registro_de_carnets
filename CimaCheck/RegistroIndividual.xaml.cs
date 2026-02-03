@@ -2,6 +2,7 @@
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
+using Registro_de_carnets.Modelos;
 using Registro_de_carnets.Services;
 
 namespace Registro_de_carnets;
@@ -11,8 +12,7 @@ public partial class RegistroIndividual : UserControl
     public RegistroIndividual()
     {
         InitializeComponent();
-        
-        
+        LlenarOrg();
     }
     
     private void SubmitButton_OnClick(object sender, RoutedEventArgs e)
@@ -55,9 +55,19 @@ public partial class RegistroIndividual : UserControl
         
         _ = DataManager.RegistrarIndividualAsync(nombre, genero, correo);
     }
-    
-    
 
+    private async void  LlenarOrg()
+    {
+        OrganizationComboBox.Items.Clear();
+        List<Companie> listaOrg = await DataManager.ObtenerCompanies();
+
+        foreach (var Companie in listaOrg)
+        {
+            Console.WriteLine(Companie.NombreProc);
+            OrganizationComboBox.Items.Add(Companie.NombreProc);
+        }
+    }
+    
     private void LimpiarFormulario()
     {
         NombreCompletoTextBox.Text = "";
