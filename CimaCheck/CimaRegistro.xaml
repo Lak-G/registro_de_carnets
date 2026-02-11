@@ -296,7 +296,7 @@
                             Grid.Column="0"
                             Style="{StaticResource BackButtonStyle}"
                             HorizontalAlignment="Left"
-                            Margin="0,0,0,10"/>
+                            Margin="0,0,0,0"/>
                 </Grid>
                 
                 
@@ -356,44 +356,69 @@
                     
                     
                     <!-- Campo Nombre completo -->
-                    <StackPanel Margin="0,0,0,20">
-                        <TextBlock x:Name="FullNameLabel" Text="Nombre completo *" 
-                                   FontSize="13" 
-                                   FontWeight="Medium"
-                                   Foreground="#FF555555"
-                                   Margin="0,0,0,8"/>
-                        <Border Background="#80F5F5DC"
-                                BorderBrush="{StaticResource UABCGold}"
-                                BorderThickness="2"
-                                CornerRadius="8"
-                                Height="50"
-                                VerticalAlignment="Top">
-                            <TextBox x:Name="FullNameTextBox"
-                                     Background="Transparent"
-                                     BorderThickness="0"
-                                     Padding="15,12"
-                                     FontSize="14"
-                                     VerticalContentAlignment="Center"/>
-                        </Border>
-                        <TextBlock x:Name="FullNamePlaceholder"
-                                   Text="Ej.  Ana Maria Jimenes Huerta"
-                                   FontSize="14"
-                                   Foreground="#FF999999"
-                                   IsHitTestVisible="False"
-                                   Margin="17,5,0,0"
-                                   VerticalAlignment="Top">
-                            <TextBlock.Style>
-                                <Style TargetType="TextBlock">
-                                    <Setter Property="Visibility" Value="Visible"/>
-                                    <Style.Triggers>
-                                        <DataTrigger Binding="{Binding Text, ElementName=FullNameTextBox}" Value="">
-                                            <Setter Property="Visibility" Value="Visible"/>
-                                        </DataTrigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </TextBlock.Style>
-                        </TextBlock>
-                    </StackPanel>
+
+                    <Grid Margin="0, 5, 0, 0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Margin="0,0,10,20">
+                            <TextBlock x:Name="FullNameLabel" Text="Nombre completo *" 
+                                       FontSize="13" 
+                                       FontWeight="Medium"
+                                       Foreground="#FF555555"
+                                       Margin="0,0,0,8"/>
+                            <Border Background="#80F5F5DC"
+                                    BorderBrush="{StaticResource UABCGold}"
+                                    BorderThickness="2"
+                                    CornerRadius="8"
+                                    Height="50"
+                                    VerticalAlignment="Top">
+                                <TextBox x:Name="FullNameTextBox"
+                                         Background="Transparent"
+                                         BorderThickness="0"
+                                         Padding="15,12"
+                                         FontSize="14"
+                                         VerticalContentAlignment="Center"/>
+                            </Border>
+                            <TextBlock x:Name="FullNamePlaceholder"
+                                       Text="Ej.  Ana Maria Jimenes Huerta"
+                                       FontSize="14"
+                                       Foreground="#FF999999"
+                                       IsHitTestVisible="False"
+                                       Margin="17,5,0,0"
+                                       VerticalAlignment="Top">
+                                <TextBlock.Style>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Text, ElementName=FullNameTextBox}" Value="">
+                                                <Setter Property="Visibility" Value="Visible"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBlock.Style>
+                            </TextBlock>
+                        </StackPanel>
+
+                        <!-- Area de genero -->
+                        <StackPanel Grid.Column="1"  Margin="0,0,0,5">
+                            <TextBlock x:Name="GenderLabel" Text="Seleccione el genero*" 
+                                       FontSize="13" 
+                                       FontWeight="Medium"
+                                       Foreground="#FF555555"
+                                       Margin="0,0,0,8"/>
+                            <ComboBox x:Name="GenderComboBox"
+                                      Style="{StaticResource InputComboBoxStyle}">
+                                <ComboBoxItem Content="Selecciona un Genero" IsEnabled="False" IsSelected="True" Foreground="#FF999999"/>
+                                <ComboBoxItem Content="Masculino" Foreground="{StaticResource GenderMaleColor}"/>
+                                <ComboBoxItem Content="Femenino" Foreground="{StaticResource GenderFemaleColor}" />
+                                <ComboBoxItem Content="Otro" Foreground="{StaticResource GenderOtherColor}"/>
+                            </ComboBox>
+                        </StackPanel>
+                    </Grid>
+                    
                     
                     
                     <Grid>
@@ -403,7 +428,7 @@
                         </Grid.ColumnDefinitions>
                         
                         <!-- Area de facultad -->
-                        <StackPanel Grid.Column="0" Margin="0,0,0,25">
+                        <StackPanel Grid.Column="0" Margin="0,0,10,25">
                             <TextBlock x:Name="FacultyLabel" Text="Facultad*" 
                                        FontSize="13" 
                                        FontWeight="Medium"
@@ -433,21 +458,7 @@
                     </Grid>
                     
                     
-                    <!-- Area de genero -->
-                    <StackPanel  Margin="0,0,0,5">
-                        <TextBlock x:Name="GenderLabel" Text="Seleccione el genero*" 
-                                   FontSize="13" 
-                                   FontWeight="Medium"
-                                   Foreground="#FF555555"
-                                   Margin="0,0,0,8"/>
-                        <ComboBox x:Name="GenderComboBox"
-                                  Style="{StaticResource InputComboBoxStyle}">
-                            <ComboBoxItem Content="Selecciona un Genero" IsEnabled="False" IsSelected="True" Foreground="#FF999999"/>
-                            <ComboBoxItem Content="Masculino" Foreground="{StaticResource GenderMaleColor}"/>
-                            <ComboBoxItem Content="Femenino" Foreground="{StaticResource GenderFemaleColor}" />
-                            <ComboBoxItem Content="Otro" Foreground="{StaticResource GenderOtherColor}"/>
-                        </ComboBox>
-                    </StackPanel>
+                    
                     
                     
                     <TextBlock Text="Los Campos Marcados con un * son obligatorios"

@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="CimaCheck" Height="900" Width="1200"
         WindowStartupLocation="CenterScreen"
-        ResizeMode="NoResize"
+        WindowState="Maximized" WindowStyle="None"
         Background="#F7F8F6">
     <Grid>
         <!-- Contenedor para las páginas con transiciones -->

@@ -407,42 +407,58 @@
             <Grid Margin="0,30,0,0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
+
                 
-                <StackPanel Grid.Column="0" Margin="0,0,0,25">
-                    <TextBlock Text="Nombre de la escuela *" 
+                <StackPanel Grid.Column="1" Margin="0,0,5,25">
+                    <TextBlock Text="Nombre de la escuela*" 
                                FontSize="13" 
                                FontWeight="Bold"
                                Foreground="#FF555555"
                                Margin="0,0,0,8"/>
                     <ComboBox x:Name="SchoolNameComboBox"
+                              SelectionChanged="SchoolNameComboBox_OnSelectionChanged"
                               Style="{StaticResource InputComboBoxStyle}">
-                        <ComboBoxItem Content="Selecciona una escuela" IsEnabled="False" IsSelected="True" Foreground="#FF999999"/>
-                        <ComboBoxItem Content="Facultad de Contaduría y Administración"/>
-                        <ComboBoxItem Content="Facultad de Deportes"/>
-                        <ComboBoxItem Content="Facultad de Idiomas"/>
-                        <ComboBoxItem Content="+ Agregar nueva escuela" 
-                                      FontWeight="Bold" 
-                                      Foreground="{StaticResource UABCGreen}"
-                                      x:Name="AddNewSchoolItem"/>
+                        <ComboBoxItem Content="Selecciona una escuela" IsEnabled="False" IsSelected="True"/>
+                        
                     </ComboBox>
                 </StackPanel>
-                
-                <StackPanel Grid.Column="1">
+
+                <StackPanel Grid.Column="0" Margin="0,0,5,25">
+                    <TextBlock Text="Nivel Educativo*" 
+                               FontSize="13" 
+                               FontWeight="Bold"
+                               Foreground="#FF555555"
+                               Margin="0,0,0,8"/>
+                    <ComboBox x:Name="NivelEducativoComboBox"
+                              SelectionChanged="NivelEducativoComboBox_OnSelectionChanged"
+                              Style="{StaticResource InputComboBoxStyle}">
+                        <ComboBoxItem Content="Selecciona una escuela" IsEnabled="False" IsSelected="True"/>
+                        <ComboBoxItem Content="Primaria" />
+                        <ComboBoxItem Content="Secundaria"/>
+                        <ComboBoxItem Content="Preparatoria"/>
+
+                    </ComboBox>
+                </StackPanel>
+
+                <!-- Area TextBoxNombre-->
+                <StackPanel Grid.Column="2">
                     <TextBlock Text="Filtro por nombre" 
                                FontSize="13" 
                                FontWeight="Bold"
                                Foreground="#FF555555"
-                               Margin="20,0,0,8"/>
+                               Margin="0,0,0,8"/>
                     <Border Background="#80F5F5DC"
                             BorderBrush="{StaticResource UABCGold}"
                             BorderThickness="2"
                             CornerRadius="8"
                             Height="50"
                             VerticalAlignment="Top"
-                            Margin="20,0,0,0">
+                            Margin="0,0,0,0">
                         <TextBox x:Name="NombreCompletoTextBox"
+                                 Width="500"
                                  Background="Transparent"
                                  BorderThickness="0"
                                  Padding="15,12"
@@ -451,10 +467,10 @@
                                  TextChanged="NombreCompletoTextBox_OnTextChanged"/>
                     </Border>
                 </StackPanel>
-                
             </Grid>
+
             <!-- Area de lista de datos -->
-            <ScrollViewer Height="425" 
+            <ScrollViewer Height="380" 
                           VerticalScrollBarVisibility="Hidden"
                           HorizontalScrollBarVisibility="Disabled">
                 <StackPanel x:Name="ContenedorTarjetas" 

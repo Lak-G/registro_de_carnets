@@ -174,7 +174,7 @@
 
         <!-- Geometría para flecha -->
         <PathGeometry x:Key="ArrowBackIcon" Figures="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z"/>
-        
+
         <!-- Estilo para ComboBox -->
         <Style x:Key="InputComboBoxStyle" TargetType="ComboBox">
             <Setter Property="Height" Value="50"/>
@@ -284,9 +284,9 @@
     </UserControl.Resources>
 
     <Grid>
-        <ScrollViewer VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Disabled">
+        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
             <StackPanel HorizontalAlignment="Center"  Width="540" Margin="0,100,0,80">
-                
+
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"/>
@@ -299,8 +299,8 @@
                             HorizontalAlignment="Left"
                             Margin="0,0,0,10"/>
                 </Grid>
-                
-                
+
+
 
                 <!-- Título -->
                 <TextBlock Text="Registro Individual" 
@@ -313,112 +313,151 @@
 
                 <!-- Formulario -->
                 <StackPanel>
-                    
+
                     <!-- Campo: Nombre completo -->
-                    <StackPanel Margin="0,0,0,30">
-                        <TextBlock x:Name="NombreCompletoLabel" Text="Nombre completo *" 
+                    <Grid>
+                        <!--Definicion de columnas para los TextBox -->
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Grid.Column="0" Margin="0, 0, 10, 0">
+                            <TextBlock x:Name="NombreCompletoLabel" Text="Nombre completo *" 
                                    FontSize="13" 
                                    FontWeight="Medium"
                                    Foreground="#FF555555"
                                    Margin="0,0,0,8"/>
-                        <Border Background="#80F5F5DC"
+                            <Border Background="#80F5F5DC"
                                 BorderBrush="{StaticResource UABCGold}"
                                 BorderThickness="2"
                                 CornerRadius="8"
                                 Height="50"
                                 VerticalAlignment="Top">
-                            <TextBox x:Name="NombreCompletoTextBox"
+                                <TextBox x:Name="NombreCompletoTextBox"
                                      Background="Transparent"
                                      BorderThickness="0"
                                      Padding="15,12"
                                      FontSize="14"
                                      VerticalContentAlignment="Center"/>
-                        </Border>
-                        
-                        <TextBlock x:Name="FullNamePlaceholder"
+                            </Border>
+
+                            <TextBlock x:Name="FullNamePlaceholder"
                                    Text="Ej. Juan Pérez"
                                    FontSize="14"
                                    Foreground="#FF999999"
                                    IsHitTestVisible="False"
                                    Margin="17,5,0,0"
                                    VerticalAlignment="Top">
-                            <TextBlock.Style>
-                                <Style TargetType="TextBlock">
-                                    <Setter Property="Visibility" Value="Visible"/>
-                                    <Style.Triggers>
-                                        <DataTrigger Binding="{Binding Text, ElementName=FullNameTextBox}" Value="">
-                                            <Setter Property="Visibility" Value="Visible"/>
-                                        </DataTrigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </TextBlock.Style>
-                        </TextBlock>
-                    </StackPanel>
-                    
+                                <TextBlock.Style>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Text, ElementName=FullNameTextBox}" Value="">
+                                                <Setter Property="Visibility" Value="Visible"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBlock.Style>
+                            </TextBlock>
+                        </StackPanel>
+                        <StackPanel Grid.Column="1">
+                            <TextBlock x:Name="EdadLabel" Text="Edad *               " 
+                                       FontSize="13" 
+                                       FontWeight="Medium"
+                                       Foreground="#FF555555"
+                                       Margin="0,0,0,8"/>
+                            <Border Background="#80F5F5DC"
+                                    BorderBrush="{StaticResource UABCGold}"
+                                    BorderThickness="2"
+                                    CornerRadius="8"
+                                    Height="50"
+                                    VerticalAlignment="Top">
+                                <TextBox x:Name="EdadTextBox"
+                                         Background="Transparent"
+                                         BorderThickness="0"
+                                         Padding="15,12"
+                                         FontSize="14"
+                                         VerticalContentAlignment="Center"
+                                         PreviewTextInput="EdadTextBox_PreviewTextInput"
+                                         MaxLength="2"/>
+                            </Border>
+                        </StackPanel>
+
+                    </Grid>
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Grid.Column="0"  Margin="0,0,10,0">
+                            <TextBlock x:Name="GenderLabel" Text="Seleccione el genero*" 
+                                       FontSize="13" 
+                                       Foreground="#FF555555"
+                                       Margin="0,0,0,8"/>
+                            <ComboBox x:Name="GenderComboBox"
+                                      Style="{StaticResource InputComboBoxStyle}">
+                                <ComboBoxItem Content="Selecciona un Genero" IsEnabled="False" IsSelected="True" Foreground="#FF999999"/>
+                                <ComboBoxItem Content="Masculino" Foreground="{StaticResource GenderMaleColor}"/>
+                                <ComboBoxItem Content="Femenino" Foreground="{StaticResource GenderFemaleColor}" />
+                                <ComboBoxItem Content="Otro" Foreground="{StaticResource GenderOtherColor}"/>
+                            </ComboBox>
+                        </StackPanel>
+
+                        <!-- Campo: Correo electrónico -->
+                        <StackPanel Grid.Column="1" Margin="0,0,0,0">
+                            <TextBlock x:Name="CorreoElectronicoLabel" Text="Correo electrónico *" 
+                                       FontSize="13" 
+                                       FontWeight="Medium"
+                                       Foreground="#FF555555"
+                                       Margin="0,0,0,8"/>
+                            <Border Grid.Row="2"
+                                    Background="#80F5F5DC"
+                                    BorderBrush="{StaticResource UABCGold}"
+                                    BorderThickness="2"
+                                    CornerRadius="8"
+                                    Height="50"
+                                    VerticalAlignment="Top">
+                                <TextBox x:Name="CorreoElectronicoTextBox"
+                                         Background="Transparent"
+                                         BorderThickness="0"
+                                         Padding="15,12"
+                                         FontSize="14"
+                                         VerticalContentAlignment="Center"/>
+                            </Border>
+
+                            <TextBlock x:Name="EmailPlaceholder"
+                                       Text="juan.perez@gmail.com"
+                                       FontSize="14"
+                                       Foreground="#FF999999"
+                                       IsHitTestVisible="False"
+                                       Margin="17,5,0,0"
+                                       VerticalAlignment="Top">
+                                <TextBlock.Style>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Text, ElementName=EmailTextBox}" Value="">
+                                                <Setter Property="Visibility" Value="Visible"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBlock.Style>
+                            </TextBlock>
+                            <TextBlock x:Name="EmailErrorMessage"
+                                       Text="Por favor, introduce un correo electrónico válido."
+                                       FontSize="12"
+                                       Foreground="#FFE53E3E"
+                                       Margin="0,8,0,0"
+                                       Visibility="Collapsed"/>
+                        </StackPanel>
+                    </Grid>
+
                     <!-- Area de genero -->
-                    <StackPanel  Margin="0,0,0,25">
-                        <TextBlock x:Name="GenderLabel" Text="Seleccione el genero*" 
-                                   FontSize="13" 
-                                   Foreground="#FF555555"
-                                   Margin="0,0,0,8"/>
-                        <ComboBox x:Name="GenderComboBox"
-                                  Style="{StaticResource InputComboBoxStyle}">
-                            <ComboBoxItem Content="Selecciona un Genero" IsEnabled="False" IsSelected="True" Foreground="#FF999999"/>
-                            <ComboBoxItem Content="Masculino" Foreground="{StaticResource GenderMaleColor}"/>
-                            <ComboBoxItem Content="Femenino" Foreground="{StaticResource GenderFemaleColor}" />
-                            <ComboBoxItem Content="Otro" Foreground="{StaticResource GenderOtherColor}"/>
-                        </ComboBox>
-                    </StackPanel>
 
-                    <!-- Campo: Correo electrónico -->
-                    <StackPanel Margin="0,0,0,30">
-                        <TextBlock x:Name="CorreoElectronicoLabel" Text="Correo electrónico *" 
-                                   FontSize="13" 
-                                   FontWeight="Medium"
-                                   Foreground="#FF555555"
-                                   Margin="0,0,0,8"/>
-                        <Border Grid.Row="2"
-                                Background="#80F5F5DC"
-                                BorderBrush="{StaticResource UABCGold}"
-                                BorderThickness="2"
-                                CornerRadius="8"
-                                Height="50"
-                                VerticalAlignment="Top">
-                            <TextBox x:Name="CorreoElectronicoTextBox"
-                                     Background="Transparent"
-                                     BorderThickness="0"
-                                     Padding="15,12"
-                                     FontSize="14"
-                                     VerticalContentAlignment="Center"
-                                     />
-                        </Border>
 
-                        <TextBlock x:Name="EmailPlaceholder"
-                                   Text="juan.perez@gmail.com"
-                                   FontSize="14"
-                                   Foreground="#FF999999"
-                                   IsHitTestVisible="False"
-                                   Margin="17,5,0,0"
-                                   VerticalAlignment="Top">
-                            <TextBlock.Style>
-                                <Style TargetType="TextBlock">
-                                    <Setter Property="Visibility" Value="Visible"/>
-                                    <Style.Triggers>
-                                        <DataTrigger Binding="{Binding Text, ElementName=EmailTextBox}" Value="">
-                                            <Setter Property="Visibility" Value="Visible"/>
-                                        </DataTrigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </TextBlock.Style>
-                        </TextBlock>
-                        <TextBlock x:Name="EmailErrorMessage"
-                                   Text="Por favor, introduce un correo electrónico válido."
-                                   FontSize="12"
-                                   Foreground="#FFE53E3E"
-                                   Margin="0,8,0,0"
-                                   Visibility="Collapsed"/>
-                    </StackPanel>
-                    
                     <StackPanel>
                         <TextBlock x:Name="OrganizationLabel" Text="Seleccione el genero*" 
                                    FontSize="13" 
@@ -437,9 +476,9 @@
                             Margin="0,25,0,0"
                             Click="SubmitButton_OnClick"
                             />
-                    
+
                 </StackPanel>
-                
+
             </StackPanel>
         </ScrollViewer>
     </Grid>

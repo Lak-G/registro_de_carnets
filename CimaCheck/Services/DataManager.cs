@@ -10,7 +10,8 @@ namespace Registro_de_carnets.Services;
 public static class DataManager
 {
     private static Supabase.Client? _supabase;
-    
+
+    #region Constructor
     public static async Task InicializarAsync()
     {
         var settings = App.Configuration.GetSection("Supabase").Get<SupabaseSettings>();
@@ -29,9 +30,10 @@ public static class DataManager
         _supabase = new Supabase.Client(settings.Url, settings.Key, options);
         await _supabase.InitializeAsync();
     }
-    
+    #endregion
+
     #region Facultades
-    
+
     public static async Task<List<Facultad>> ObtenerFacultadesAsync()
     {
         try
@@ -59,11 +61,42 @@ public static class DataManager
             return new List<Facultad>();
         }
     }
-    
+
     #endregion
-    
+
+    #region ObtenerEscuelas
+
+    public static async Task<List<Escuela>> ObtenerEscuelasAsync(string nivelEducativo)
+    {
+        try
+        {
+            if (_supabase == null)
+                throw new InvalidOperationException("Supabase no ha sido inicializado");
+
+            var response = await _supabase
+                .From<EscuelaDb>()
+                .Where(f => f.NivelEducativo == nivelEducativo)
+                //.Order("nombre", Postgrest.Constants.Ordering.Ascending)
+                .Get();
+            
+            return response.Models.Select(f => new Escuela
+            {
+                Id = f.Id,
+                NombreEscuela = f.Nombre,
+                NivelEducativo = f.NivelEducativo
+            }).ToList();
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show($"Error al cargar escuelas: {ex.Message}");
+            return new List<Escuela>();
+        }
+    }
+
+    #endregion
+
     #region Carreras
-    
+
     public static async Task<List<Carrera>> ObtenerCarrerasPorFacultadAsync(int facultadId)
     {
         try
@@ -156,23 +189,40 @@ public static class DataManager
     
     #region Registro Individual
     
-    public static async Task<bool> RegistrarIndividualAsync(string nombreCompleto, string genero, string email)
+    /// <summary>
+    /// Metodo para registrar a los asistentes externos
+    /// </summary>
+    /// <param name="nombreCompleto"></param>
+    /// <param name="genero"></param>
+    /// <param name="email"></param>
+    /// <returns></returns>
+    /// <exception cref="InvalidOperationException"></exception>
+    public static async Task<bool> RegistrarIndividualAsync(string nombreCompleto, string genero, int idProcedencia, int edad)
     {
         try
         {
             if (_supabase == null)
                 throw new InvalidOperationException("Supabase no ha sido inicializado");
 
-            var persona = new PersonaDb
+            //var persona = new PersonaDb
+            //{
+            //    NombreCompleto = nombreCompleto,
+            //    Genero = genero,
+            //    Email = email,
+            //    Asistencia = true,
+            //    TipoRegistro = "individual"
+            //};
+
+            var externos = new ExternosDb
             {
-                NombreCompleto = nombreCompleto,
+                VisitanteId = 2,
+                Nombre = nombreCompleto,
                 Genero = genero,
-                Email = email,
-                Asistencia = true,
-                TipoRegistro = "individual"
+                IdProcedencia = idProcedencia,
+                Edad = edad
             };
-            
-            await _supabase.From<PersonaDb>().Insert(persona);
+
+            await _supabase.From<ExternosDb>().Insert(externos);
             return true;
         }
         catch (Exception ex)
@@ -186,31 +236,33 @@ public static class DataManager
     
     #region Escuelas
     
-    public static async Task<List<Escuela>> ObtenerEscuelasAsync()
-    {
-        try
-        {
-            if (_supabase == null)
-                throw new InvalidOperationException("Supabase no ha sido inicializado");
+    //Metodos obsoletos para el sistema actual 
 
-            var response = await _supabase
-                .From<EscuelaDb>()
-                .Order("nombre", Postgrest.Constants.Ordering.Ascending)
-                .Get();
+    //public static async Task<List<Escuela>> ObtenerEscuelasAsync()
+    //{
+    //    try
+    //    {
+    //        if (_supabase == null)
+    //            throw new InvalidOperationException("Supabase no ha sido inicializado");
+
+    //        var response = await _supabase
+    //            .From<EscuelaDb>()
+    //            .Order("nombre", Postgrest.Constants.Ordering.Ascending)
+    //            .Get();
             
-            return response.Models.Select(e => new Escuela
-            {
-                Id = e.Id,
-                Nombre = e.Nombre,
-                NivelEducativo = e.NivelEducativo
-            }).ToList();
-        }
-        catch (Exception ex)
-        {
-            MessageBox.Show($"Error al cargar escuelas: {ex.Message}");
-            return new List<Escuela>();
-        }
-    }
+    //        return response.Models.Select(e => new Escuela
+    //        {
+    //            Id = e.Id,
+    //            NombreEscuela = e.Nombre,
+    //            NivelEducativo = e.NivelEducativo
+    //        }).ToList();
+    //    }
+    //    catch (Exception ex)
+    //    {
+    //        MessageBox.Show($"Error al cargar escuelas: {ex.Message}");
+    //        return new List<Escuela>();
+    //    }
+    //}
     
     public static async Task<int> AgregarEscuelaAsync(string nombre, string nivelEducativo)
     {
@@ -356,13 +408,13 @@ public class CarreraDb : BaseModel
 
 #region Modelo Escuela
 
-[Table("Escuelas")]
+[Table("escuela")]
 public class EscuelaDb : BaseModel
 {
     [PrimaryKey("id")]
     public int Id { get; set; }
     
-    [Column("nombre")]
+    [Column("nombre_escuela")]
     public string Nombre { get; set; }
     
     [Column("nivel_educativo")]
@@ -420,6 +472,33 @@ public class PersonaDb : BaseModel
 
 #endregion
 
+#region Modelo Externos
+[Table("externos")]
+public class ExternosDb : BaseModel
+{
+    [PrimaryKey ("id")]
+    public int id { get; set; }
+
+    [Column ("visitante_id")]
+    public int VisitanteId { get; set; }
+
+    [Column ("nombre")]
+    public string Nombre { get; set; }
+
+    [Column ("genero")]
+    public string Genero { get; set; }
+
+    [Column ("id_procedencia")]
+    public int IdProcedencia { get; set; }
+
+    [Column("edad")]
+    public int Edad { get; set; }
+
+}
+
+
+#endregion
+
 #region Modelo Cima
 
 [Table("cimarron")]
@@ -455,30 +534,15 @@ public class AlumnoEscuelaDb : BaseModel
 {
     [PrimaryKey("id")]
     public int Id { get; set; }
-    
+
+    [Column ("id_escuela")]
+    public int IdEscuela { get; set; }
+
     [Column("nombre_completo")]
     public string NombreCompleto { get; set; }
-    
-    [Column("edad")]
-    public int? Edad { get; set; }
-    
-    [Column("genero")]
-    public string Genero { get; set; }
-    
-    [Column("escuela_id")]
-    public int EscuelaId { get; set; }
-    
-    [Column("grupo_responsable")]
-    public string GrupoResponsable { get; set; }
-    
-    [Column("asistencia")]
-    public bool Asistencia { get; set; }
-    
-    [Column("fecha_asistencia")]
-    public DateTime? FechaAsistencia { get; set; }
-    
-    [Column("fecha_registro")]
-    public DateTime FechaRegistro { get; set; }
+
+    [Column ("nivel_educativo")]
+    public string NivelEducativo { get; set; }
 }
 
 #endregion

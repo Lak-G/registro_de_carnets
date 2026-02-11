@@ -1,0 +1,115 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\aaaaa\\source\\repos\\registro_de_carnets\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{83E9E7A0-9499-4443-97E4-4FAECB5EC483}|CimaCheck\\CimaCheck.csproj|c:\\users\\aaaaa\\source\\repos\\registro_de_carnets\\cimacheck\\cimaregistro.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{83E9E7A0-9499-4443-97E4-4FAECB5EC483}|CimaCheck\\CimaCheck.csproj|solutionrelative:cimacheck\\cimaregistro.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{83E9E7A0-9499-4443-97E4-4FAECB5EC483}|CimaCheck\\CimaCheck.csproj|c:\\users\\aaaaa\\source\\repos\\registro_de_carnets\\cimacheck\\services\\datamanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{83E9E7A0-9499-4443-97E4-4FAECB5EC483}|CimaCheck\\CimaCheck.csproj|solutionrelative:cimacheck\\services\\datamanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{83E9E7A0-9499-4443-97E4-4FAECB5EC483}|CimaCheck\\CimaCheck.csproj|c:\\users\\aaaaa\\source\\repos\\registro_de_carnets\\cimacheck\\asistenciaescuelas.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{83E9E7A0-9499-4443-97E4-4FAECB5EC483}|CimaCheck\\CimaCheck.csproj|solutionrelative:cimacheck\\asistenciaescuelas.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{83E9E7A0-9499-4443-97E4-4FAECB5EC483}|CimaCheck\\CimaCheck.csproj|c:\\users\\aaaaa\\source\\repos\\registro_de_carnets\\cimacheck\\cimaregistro.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{83E9E7A0-9499-4443-97E4-4FAECB5EC483}|CimaCheck\\CimaCheck.csproj|solutionrelative:cimacheck\\cimaregistro.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{83E9E7A0-9499-4443-97E4-4FAECB5EC483}|CimaCheck\\CimaCheck.csproj|c:\\users\\aaaaa\\source\\repos\\registro_de_carnets\\cimacheck\\modelos\\escuela.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{83E9E7A0-9499-4443-97E4-4FAECB5EC483}|CimaCheck\\CimaCheck.csproj|solutionrelative:cimacheck\\modelos\\escuela.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{83E9E7A0-9499-4443-97E4-4FAECB5EC483}|CimaCheck\\CimaCheck.csproj|c:\\users\\aaaaa\\source\\repos\\registro_de_carnets\\cimacheck\\modelos\\alumno.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{83E9E7A0-9499-4443-97E4-4FAECB5EC483}|CimaCheck\\CimaCheck.csproj|solutionrelative:cimacheck\\modelos\\alumno.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "CimaRegistro.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\aaaaa\\source\\repos\\registro_de_carnets\\CimaCheck\\CimaRegistro.xaml.cs",
+              "RelativeDocumentMoniker": "CimaCheck\\CimaRegistro.xaml.cs",
+              "ToolTip": "C:\\Users\\aaaaa\\source\\repos\\registro_de_carnets\\CimaCheck\\CimaRegistro.xaml.cs",
+              "RelativeToolTip": "CimaCheck\\CimaRegistro.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAJ0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-09T15:27:31.328Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "DataManager.cs",
+              "DocumentMoniker": "C:\\Users\\aaaaa\\source\\repos\\registro_de_carnets\\CimaCheck\\Services\\DataManager.cs",
+              "RelativeDocumentMoniker": "CimaCheck\\Services\\DataManager.cs",
+              "ToolTip": "C:\\Users\\aaaaa\\source\\repos\\registro_de_carnets\\CimaCheck\\Services\\DataManager.cs",
+              "RelativeToolTip": "CimaCheck\\Services\\DataManager.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAAwKEBAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-04T21:02:20.201Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "AsistenciaEscuelas.xaml",
+              "DocumentMoniker": "C:\\Users\\aaaaa\\source\\repos\\registro_de_carnets\\CimaCheck\\AsistenciaEscuelas.xaml",
+              "RelativeDocumentMoniker": "CimaCheck\\AsistenciaEscuelas.xaml",
+              "ToolTip": "C:\\Users\\aaaaa\\source\\repos\\registro_de_carnets\\CimaCheck\\AsistenciaEscuelas.xaml",
+              "RelativeToolTip": "CimaCheck\\AsistenciaEscuelas.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-02-06T16:00:19.658Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "CimaRegistro.xaml",
+              "DocumentMoniker": "C:\\Users\\aaaaa\\source\\repos\\registro_de_carnets\\CimaCheck\\CimaRegistro.xaml",
+              "RelativeDocumentMoniker": "CimaCheck\\CimaRegistro.xaml",
+              "ToolTip": "C:\\Users\\aaaaa\\source\\repos\\registro_de_carnets\\CimaCheck\\CimaRegistro.xaml",
+              "RelativeToolTip": "CimaCheck\\CimaRegistro.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-02-09T15:44:46.644Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Escuela.cs",
+              "DocumentMoniker": "C:\\Users\\aaaaa\\source\\repos\\registro_de_carnets\\CimaCheck\\Modelos\\Escuela.cs",
+              "RelativeDocumentMoniker": "CimaCheck\\Modelos\\Escuela.cs",
+              "ToolTip": "C:\\Users\\aaaaa\\source\\repos\\registro_de_carnets\\CimaCheck\\Modelos\\Escuela.cs",
+              "RelativeToolTip": "CimaCheck\\Modelos\\Escuela.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-09T15:14:55.992Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Alumno.cs",
+              "DocumentMoniker": "C:\\Users\\aaaaa\\source\\repos\\registro_de_carnets\\CimaCheck\\Modelos\\Alumno.cs",
+              "RelativeDocumentMoniker": "CimaCheck\\Modelos\\Alumno.cs",
+              "ToolTip": "C:\\Users\\aaaaa\\source\\repos\\registro_de_carnets\\CimaCheck\\Modelos\\Alumno.cs",
+              "RelativeToolTip": "CimaCheck\\Modelos\\Alumno.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-09T15:21:13.371Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

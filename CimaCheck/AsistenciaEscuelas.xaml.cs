@@ -1,9 +1,12 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Documents.DocumentStructures;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Xml.Serialization;
 using Registro_de_carnets.Modelos;
+using Registro_de_carnets.Services;
 
 
 namespace Registro_de_carnets;
@@ -27,18 +30,16 @@ public partial class AsistenciaEscuelas : UserControl
         new Persona { Nombre = "Javier Hernández Cruz", Edad = 20, Genero = "M", Seleccionado = false }
     };
 
-    private List<List<Persona>> listaEscuelas = new List<List<Persona>>()
-    { };
+    private List<List<Persona>> listaEscuelas;
     #endregion
     
+
     
     public AsistenciaEscuelas()
     {
         InitializeComponent();
         CargarTarjetas();
     }
-
-
 
     /// <summary>
     /// Crea las tarjetas de manera dinamica
@@ -78,7 +79,7 @@ public partial class AsistenciaEscuelas : UserControl
             Foreground = new SolidColorBrush(Color.FromRgb(30, 30, 30))
         };
 
-        // Panel horizontal para edad y género
+        // Panel horizontal para edad y genero
         StackPanel edadGeneroPanel = new StackPanel
         {
             Orientation = Orientation.Horizontal,
@@ -94,7 +95,7 @@ public partial class AsistenciaEscuelas : UserControl
             Margin = new Thickness(0, 0, 8, 0)
         };
 
-        // Icono de género
+        // Icono de genero
         Image iconoGenero = new Image
         {
             Width = 15,
@@ -153,14 +154,15 @@ public partial class AsistenciaEscuelas : UserControl
         ContenedorTarjetas.Children.Add(tarjeta);
     }
 
-    // Método para cargar todas las tarjetas
+    /// <summary>
+    /// Carga las tarjetas de las personas en el contenedor principal
+    /// </summary>
     private void CargarTarjetas()
     {
         // Limpiar tarjetas existentes
         ContenedorTarjetas.Children.Clear();
 
-        // Lista de ejemplo
-        
+        //List<Alumno> = DataManager.
         // Agregar cada tarjeta
         foreach (var persona in personas)
         {
@@ -187,4 +189,48 @@ public partial class AsistenciaEscuelas : UserControl
             }
         }
     }
+
+    private void SchoolNameComboBox_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        
+    }
+
+    private async void NivelEducativoComboBox_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        // Obtener el contenido del ComboBoxItem seleccionado en vez de usar .Text,
+        // así se evita leer un valor desactualizado o parcial.
+        if (NivelEducativoComboBox.SelectedItem is ComboBoxItem cbi)
+        {
+            var contenido = cbi.Content?.ToString() ?? string.Empty;
+            // Ignorar el item inicial de placeholder
+            if (string.IsNullOrWhiteSpace(contenido) || contenido == "Selecciona una escuela")
+                return;
+
+            List<Escuela> escuelas = await DataManager.ObtenerEscuelasAsync(contenido);
+            CargarEscuelas(escuelas);
+        }
+    }
+
+    private void CargarEscuelas(List<Escuela> lsEscuelas)
+    {
+        // Reconstruir el item por defecto para evitar referencias a objetos antiguos
+        var defaultItem = new ComboBoxItem
+        {
+            Content = "Selecciona una escuela",
+            IsEnabled = false,
+            IsSelected = true
+        };
+
+        SchoolNameComboBox.Items.Clear();
+
+        SchoolNameComboBox.Items.Add(defaultItem);
+        foreach (var Escuela in lsEscuelas)
+        {
+            SchoolNameComboBox.Items.Add(Escuela.NombreEscuela);
+        }
+
+        SchoolNameComboBox.SelectedIndex = 0;
+    }
+
+    
 }

@@ -161,7 +161,7 @@
                            Margin="0,0,0,60"/>
 
                 <!-- Botones de selección -->
-                <Grid>
+                <Grid Height="200">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="40"/>

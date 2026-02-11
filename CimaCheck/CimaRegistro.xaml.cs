@@ -148,7 +148,6 @@ public partial class CimaRegistro : UserControl
     /// <param name="e"></param>
     private void MatriculaTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
     {
-        // Solo permite números
         e.Handled = !IsTextNumeric(e.Text);
     }
 

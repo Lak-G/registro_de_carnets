@@ -44,16 +44,16 @@ public partial class RegistroIndividual : UserControl
         {
             genero = selectedItem.Content.ToString() switch
             {
-                "Masculino" => "M",
-                "Femenino" => "F",
-                "Otro" => "O",
+                "Masculino" => "Masculino",
+                "Femenino" => "Femenino",
+                "Otro" => "Otro",
                 _ => ""
             };
         }
-        
-        string correo = CorreoElectronicoTextBox.Text;
-        
-        _ = DataManager.RegistrarIndividualAsync(nombre, genero, correo);
+
+        int idProcedencia = OrganizationComboBox.SelectedIndex + 1;
+        int edad = Int16.Parse(EdadTextBox.Text);
+        _ = DataManager.RegistrarIndividualAsync(nombre, genero, idProcedencia, edad);
     }
 
     private async void  LlenarOrg()
@@ -73,5 +73,13 @@ public partial class RegistroIndividual : UserControl
         NombreCompletoTextBox.Text = "";
         CorreoElectronicoTextBox.Text = "";
         GenderComboBox.SelectedIndex = 0;
+    }
+    private void EdadTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+    {
+        e.Handled = !IsTextNumeric(e.Text);
+    }
+    private bool IsTextNumeric(string text)
+    {
+        return text.All(char.IsDigit);
     }
 }
